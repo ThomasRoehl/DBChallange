@@ -1,0 +1,246 @@
+{
+  "DepartureBoard":{
+    "noNamespaceSchemaLocation":"https://open-api.bahn.de/bin/rest.exe/v1.0/xsd?name=hafasRestDepartureBoard.xsd",
+    "Departure":[{
+      "name":"ICE 376",
+      "type":"ICE",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"20:04",
+      "date":"2017-01-22",
+      "direction":"Hamburg-Altona",
+      "track":"8",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=254643%2F90394%2F342750%2F86494%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+      "name":"ICE 1171",
+      "tyte":"ICE",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"20:05",
+      "date":"2017-01-22",
+      "direction":"Basel SBB",
+      "track":"6",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=359190%2F120086%2F315556%2F38048%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+      "name":"ICE 528",
+      "type":"ICE",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"20:10",
+      "date":"2017-01-22",
+      "direction":"Dortmund Hbf",
+      "track":"8",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=28653%2F12843%2F52670%2F16784%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+      "name":"ICE 592",
+      "type":"ICE",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"20:13",
+      "date":"2017-01-22",
+      "direction":"Berlin Ostbahnhof",
+      "track":"9",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=664407%2F225007%2F317176%2F62881%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+      "name":"IC 2229",
+      "type":"IC",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"20:18",
+      "date":"2017-01-22",
+      "direction":"Passau Hbf",
+      "track":"6",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=372519%2F126365%2F690168%2F220911%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+      "name":"ICE 1647",
+      "tyte":"ICE",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"20:20",
+      "date":"2017-01-22",
+      "direction":"Leipzig Hbf",
+      "track":"7",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=841371%2F281535%2F69564%2F245675%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+      "name":"IC 1995",
+      "type":"IC",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"20:20",
+      "date":"2017-01-22",
+      "direction":"Stuttgart Hbf",
+      "track":"12",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=999762%2F334672%2F931960%2F132726%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+      "name":"ICE 810",
+      "type":"ICE",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"20:31",
+      "date":"2017-01-22",
+      "direction":"Köln Hbf",
+      "track":"19",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=585390%2F199396%2F617592%2F113666%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+      "name":"ICE 1195",
+      "tyte":"ICE",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"20:38",
+      "date":"2017-01-22",
+      "direction":"Stuttgart Hbf",
+      "track":"6",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=642819%2F214678%2F162642%2F132952%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+      "name":"ICE 1594",
+      "tyte":"ICE",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"20:42",
+      "date":"2017-01-22",
+      "direction":"Frankfurt(M) Flughafen Fernbf",
+      "track":"10",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=355839%2F119501%2F310452%2F36613%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+      "name":"ICE 377",
+      "type":"ICE",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"20:50",
+      "date":"2017-01-22",
+      "direction":"Basel SBB",
+      "track":"9",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=259515%2F89601%2F781778%2F304384%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+      "name":"IC 2172",
+      "type":"IC",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"20:52",
+      "date":"2017-01-22",
+      "direction":"Kassel-Wilhelmshöhe",
+      "track":"11",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=900963%2F302275%2F773526%2F86442%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+      "name":"ICE 1554",
+      "tyte":"ICE",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"20:54",
+      "date":"2017-01-22",
+      "direction":"Saarbrücken Hbf",
+      "track":"10",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=807642%2F270040%2F808472%2F135022%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+      "name":"ICE 821",
+      "type":"ICE",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"20:54",
+      "date":"2017-01-22",
+      "direction":"München Hbf",
+      "track":"4",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=634965%2F215949%2F531572%2F54131%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+      "name":"ICE 570",
+      "type":"ICE",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"20:58",
+      "date":"2017-01-22",
+      "direction":"Hamburg-Altona",
+      "track":"7",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=541098%2F183790%2F662906%2F151087%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+      "name":"ICE 773",
+      "type":"ICE",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"21:05",
+      "date":"2017-01-22",
+      "direction":"Stuttgart Hbf",
+      "track":"6",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=908418%2F306939%2F894554%2F144471%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+      "name":"ICE 526",
+      "type":"ICE",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"21:10",
+      "date":"2017-01-22",
+      "direction":"Dortmund Hbf",
+      "track":"7",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=505659%2F171839%2F514802%2F88848%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+      "name":"ICE 292",
+      "type":"ICE",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"21:13",
+      "date":"2017-01-22",
+      "direction":"Berlin Ostbahnhof",
+      "track":"9",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=810384%2F275559%2F25004%2F257626%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+      "name":"ICE 1659",
+      "tyte":"ICE",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"21:19",
+      "date":"2017-01-22",
+      "direction":"Dresden Hbf",
+      "track":"4",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=845019%2F282788%2F986992%2F211823%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    },{
+      "name":"ICE 22",
+      "type":"ICE",
+      "stopid":"8000105",
+      "stop":"Frankfurt(Main)Hbf",
+      "time":"21:46",
+      "date":"2017-01-22",
+      "direction":"Dortmund Hbf",
+      "track":"6",
+      "JourneyDetailRef":{
+        "ref":"https://open-api.bahn.de/bin/rest.exe/v1.0/journeyDetail?ref=9492%2F8460%2F508076%2F250874%2F80%3Fdate%3D2017-01-22%26station_evaId%3D8000105%26station_type%3Ddep%26authKey%3DTestDemoAPI16%26lang%3Den%26format%3Djson%26"
+      }
+    }]
+  }
+}

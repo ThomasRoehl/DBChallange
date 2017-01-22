@@ -35,9 +35,24 @@ public class DatabaseController {
     public DatabaseController(Context context){
         dbHelper = new LocalDatabaseHelper(context);
         Log.d("DB", "CREATED");
-        db = dbHelper.getWritableDatabase();
-        db.execSQL("delete from "+ DatabaseSchema.TravelPlan.TABLE_NAME);
-        db.execSQL("delete from "+ DatabaseSchema.LiveInfo.TABLE_NAME);
+    }
+
+    public void emptyTables(){
+        try{
+            this.open();
+            db.execSQL("delete from "+ DatabaseSchema.TravelPlan.TABLE_NAME);
+            db.execSQL("delete from "+ DatabaseSchema.LiveInfo.TABLE_NAME);
+            db.execSQL("delete from "+ DatabaseSchema.Locations.TABLE_NAME);
+            db.execSQL("delete from "+ DatabaseSchema.Transfers.TABLE_NAME);
+            db.execSQL("delete from "+ DatabaseSchema.Departures.TABLE_NAME);
+            db.execSQL("delete from "+ DatabaseSchema.UserAccount.TABLE_NAME);
+            db.execSQL("delete from "+ DatabaseSchema.UserSaves.TABLE_NAME);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        this.close();
+
     }
 
     public void open() throws SQLException {
@@ -189,7 +204,7 @@ public class DatabaseController {
             Log.d("DB",e.getMessage());
             return;
         }
-        ContentValues con = UserAccountHelper.insertUserAccount(user.getName(), user.getPassword(), user.getUserID());
+        ContentValues con = UserAccountHelper.insertUserAccount(user.getName(), user.getPassword());
         db.insert(DatabaseSchema.UserAccount.TABLE_NAME, null, con);
 
         this.close();

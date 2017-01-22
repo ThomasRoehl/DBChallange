@@ -8,11 +8,10 @@ import android.content.ContentValues;
 
 public abstract class UserAccountHelper {
 
-    public static ContentValues insertUserAccount(String username, String password, String userID){
+    public static ContentValues insertUserAccount(String username, String password){
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseSchema.UserAccount.COLUMN_NAME_USERNAME, username);
         contentValues.put(DatabaseSchema.UserAccount.COLUMN_NAME_PASSWORD, password);
-        contentValues.put(DatabaseSchema.UserAccount.COLUMN_NAME_USERID, userID);
         return contentValues;
     }
 

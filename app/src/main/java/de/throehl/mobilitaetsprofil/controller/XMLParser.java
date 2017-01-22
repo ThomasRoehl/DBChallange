@@ -107,7 +107,6 @@ public class XMLParser {
 //                    Log.d(TAG, parser.getAttributeValue(ns, "Prog"));
                 }
                 if (!station.equals("") && !destTime.equals("")){
-                    Log.d(TAG, "Entry added!");
                     entries.add(new LiveInformation(station, trainID, description, destTime, delay));
                     station = "";
                     description = "";
