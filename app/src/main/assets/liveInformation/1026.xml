@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<Paket Version="1.2" SpezVer="1" TOut="20170112054541630" KNr="3469888699">
+  <ListNachricht>
+    <Nachricht>
+      <IstProg>
+        <Service Id="314889732087" IdZGattung="Bus" IdZGattungInt="Bus" IdBfEvaNr="801946" IdZeit="20170112060000" IdZNr="75076" ZielBfEvaNr="493952" Zielzeit="20170112060700" IdVerwaltung="rabRAB" SourceZNr="RIS" IdLinie="222">
+          <ListZug>
+            <Zug Nr="75076" Gattung="Bus" GattungInt="Bus" Linie="222" Name="Bus 75076" Verwaltung="rabRAB">
+              <ListZE>
+                <ZE Typ="Start">
+                  <Bf EvaNr="801946" Name="Westbahnhof, Laupheim"/>
+                  <Zeit Soll="20170112060000" Prog="20170112060000" Dispo="NEIN"/>
+                </ZE>
+                <ZE Typ="An">
+                  <Bf EvaNr="493956" Name="Untersulmetingen Wagnergasse, Laupheim"/>
+                  <Zeit Soll="20170112060200" Prog="20170112060200" Dispo="NEIN"/>
+                </ZE>
+                <ZE Typ="Ab">
+                  <Bf EvaNr="493956" Name="Untersulmetingen Wagnergasse, Laupheim"/>
+                  <Zeit Soll="20170112060200" Prog="20170112060200" Dispo="NEIN"/>
+                </ZE>
+                <ZE Typ="An">
+                  <Bf EvaNr="490815" Name="Untersulmetingen Kapelle, Laupheim"/>
+                  <Zeit Soll="20170112060300" Prog="20170112060300" Dispo="NEIN"/>
+                </ZE>
+                <ZE Typ="Ab">
+                  <Bf EvaNr="490815" Name="Untersulmetingen Kapelle, Laupheim"/>
+                  <Zeit Soll="20170112060300" Prog="20170112060300" Dispo="NEIN"/>
+                </ZE>
+                <ZE Typ="An">
+                  <Bf EvaNr="490812" Name="Untersulmetingen Sportplatz, Laupheim"/>
+                  <Zeit Soll="20170112060400" Prog="20170112060400" Dispo="NEIN"/>
+                </ZE>
+                <ZE Typ="Ab">
+                  <Bf EvaNr="490812" Name="Untersulmetingen Sportplatz, Laupheim"/>
+                  <Zeit Soll="20170112060400" Prog="20170112060400" Dispo="NEIN"/>
+                </ZE>
+                <ZE Typ="An">
+                  <Bf EvaNr="800077" Name="Obersulmetingen Friedhof, Laupheim"/>
+                  <Zeit Soll="20170112060500" Prog="20170112060500" Dispo="NEIN"/>
+                </ZE>
+                <ZE Typ="Ab">
+                  <Bf EvaNr="800077" Name="Obersulmetingen Friedhof, Laupheim"/>
+                  <Zeit Soll="20170112060500" Prog="20170112060500" Dispo="NEIN"/>
+                </ZE>
+                <ZE Typ="An">
+                  <Bf EvaNr="490810" Name="Obersulmetingen Löwen, Laupheim"/>
+                  <Zeit Soll="20170112060600" Prog="20170112060600" Dispo="NEIN"/>
+                </ZE>
+                <ZE Typ="Ab">
+                  <Bf EvaNr="490810" Name="Obersulmetingen Löwen, Laupheim"/>
+                  <Zeit Soll="20170112060600" Prog="20170112060600" Dispo="NEIN"/>
+                </ZE>
+                <ZE Typ="Ziel">
+                  <Bf EvaNr="493952" Name="Obersulmetingen Kindergarten, Laupheim"/>
+                  <Zeit Soll="20170112060700" Prog="20170112060700" Dispo="NEIN"/>
+                </ZE>
+              </ListZE>
+            </Zug>
+          </ListZug>
+        </Service>
+      </IstProg>
+      <ListQuelle>
+        <Quelle Sender="RSL" Typ="IstProg" KNr="13657011205454100002" TIn="20170112054541538" TOutSnd="20170112054541501"/>
+      </ListQuelle>
+    </Nachricht>
+  </ListNachricht>
+</Paket>

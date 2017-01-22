@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<Paket Version="1.2" SpezVer="1" TOut="20170112054541675" KNr="3469888709">
+  <ListNachricht>
+    <Nachricht>
+      <IstProg>
+        <Service Id="160463853129" IdZGattung="Bus" IdZGattungInt="Bus" IdBfEvaNr="750088" IdZeit="20170112053300" IdZNr="38262" ZielBfEvaNr="751300" Zielzeit="20170112062100" IdVerwaltung="rabRAB" SourceZNr="RIS" IdLinie="7643">
+          <ListZug>
+            <Zug Nr="38262" Gattung="Bus" GattungInt="Bus" Linie="7643" Name="Bus 38262" Verwaltung="rabRAB">
+              <ListZE>
+                <ZE Typ="An">
+                  <Bf EvaNr="752158" Name="Upfingen, St. Johann"/>
+                  <Zeit Soll="20170112054600" Prog="20170112054600" Dispo="NEIN"/>
+                </ZE>
+                <ZE Typ="Ab">
+                  <Bf EvaNr="752158" Name="Upfingen, St. Johann"/>
+                  <Zeit Soll="20170112054600" Prog="20170112054600" Dispo="NEIN"/>
+                </ZE>
+                <ZE Typ="An">
+                  <Bf EvaNr="750303" Name="Bleichstetten Schule, St. Johann"/>
+                  <Zeit Soll="20170112055000" Prog="20170112055000" Dispo="NEIN"/>
+                </ZE>
+                <ZE Typ="Ab">
+                  <Bf EvaNr="750303" Name="Bleichstetten Schule, St. Johann"/>
+                  <Zeit Soll="20170112055000" Prog="20170112055000" Dispo="NEIN"/>
+                </ZE>
+                <ZE Typ="An">
+                  <Bf EvaNr="491769" Name="Bleichstetten Sonnenhalde, St. Johann"/>
+                  <Zeit Soll="20170112055100" Prog="20170112055100" Dispo="NEIN"/>
+                </ZE>
+                <ZE Typ="Ab">
+                  <Bf EvaNr="491769" Name="Bleichstetten Sonnenhalde, St. Johann"/>
+                  <Zeit Soll="20170112055100" Prog="20170112055100" Dispo="NEIN"/>
+                </ZE>
+                <ZE Typ="An">
+                  <Bf EvaNr="752277" Name="Würtingen Ortsmitte, St. Johann"/>
+                  <Zeit Soll="20170112055400" Prog="20170112055400" Dispo="NEIN"/>
+                </ZE>
+              </ListZE>
+            </Zug>
+          </ListZug>
+        </Service>
+      </IstProg>
+      <ListQuelle>
+        <Quelle Sender="RSL" Typ="IstProg" KNr="13657011205454100006" TIn="20170112054541589" TOutSnd="20170112054541548"/>
+      </ListQuelle>
+    </Nachricht>
+  </ListNachricht>
+</Paket>

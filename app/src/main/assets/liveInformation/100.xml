@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Paket Version="1.2" SpezVer="1" TOut="20170112054526730" KNr="3469884513">
+  <ListNachricht>
+    <Nachricht>
+      <Fahrtposition>
+        <Service Id="132201642781" IdZGattung="S" IdZGattungInt="s" IdBf="EDO" IdBfEvaNr="8000080" IdZeit="20170112054100" IdZNr="31512" ZielBfCode="EHG" ZielBfEvaNr="8000142" Zielzeit="20170112061600" IdVerwaltung="03" SourceZNr="EFZ" IdLinie="5">
+          <ListZug>
+            <Zug Nr="31512" Gattung="S" GattungInt="s" Linie="5" Name="S 31512" Verwaltung="03">
+              <Position Lat="51.488108" Long="7.432501" Zeitpunkt="20170112054517000" MapStatus="1"/>
+            </Zug>
+          </ListZug>
+        </Service>
+      </Fahrtposition>
+      <ListQuelle>
+        <Quelle Sender="RIS-FZO" Typ="Fahrtposition" KNr="15942565" TIn="20170112054526657" TOutSnd="20170112054526661"/>
+      </ListQuelle>
+        </Nachricht>
+  </ListNachricht>
+</Paket>

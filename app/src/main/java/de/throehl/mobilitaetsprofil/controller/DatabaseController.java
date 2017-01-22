@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.ContactsContract;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -21,8 +20,6 @@ import de.throehl.mobilitaetsprofil.model.dbEntries.Stop;
 import de.throehl.mobilitaetsprofil.model.dbEntries.Transfers;
 import de.throehl.mobilitaetsprofil.model.dbEntries.UserAccount;
 import de.throehl.mobilitaetsprofil.model.dbEntries.UserSaves;
-
-import static de.throehl.mobilitaetsprofil.model.DatabaseSchema.TravelPlan.COLUMN_NAME_ROUTEID;
 
 /**
  * Created by thomas on 15.01.17.
@@ -51,6 +48,10 @@ public class DatabaseController {
         db.close();
     }
 
+    // ----------------------------------------------------
+    // TRAVEL PLAN
+    // ----------------------------------------------------
+
     public void insertTravelPlan(ConnectionInformation con){
         try {
             this.open();
@@ -66,26 +67,6 @@ public class DatabaseController {
             db.insert(DatabaseSchema.TravelPlan.TABLE_NAME, null, values);
         }
         this.close();
-    }
-
-    public void insertLiveInformation(LiveInformation liveInfo){
-        try {
-            this.open();
-            Log.d("DB"," OPEND");
-        }
-        catch (Exception e){
-            Log.d("DB",e.getMessage());
-            return;
-        }
-        ContentValues values = LiveInformationHelper.createTravelPlanEntry(liveInfo.getStation(), liveInfo.getTrainID(), liveInfo.getDestTime(), liveInfo.getDelay(), liveInfo.getDescription());
-        db.insert(DatabaseSchema.LiveInfo.TABLE_NAME, null, values);
-        this.close();
-    }
-
-    public void insertLiveInformationMulti(ArrayList<LiveInformation> infos){
-        for (LiveInformation l: infos){
-            this.insertLiveInformation(l);
-        }
     }
 
     public ConnectionInformation getTravelPlan(int routeID){
@@ -105,7 +86,7 @@ public class DatabaseController {
                 DatabaseSchema.TravelPlan.COLUMN_NAME_DATE,
                 DatabaseSchema.TravelPlan.COLUMN_NAME_DEPARTIME,
                 DatabaseSchema.TravelPlan.COLUMN_NAME_STATION
-                };
+        };
         Cursor cursor = db.query(DatabaseSchema.TravelPlan.TABLE_NAME, columns, DatabaseSchema.TravelPlan.COLUMN_NAME_ROUTEID+"=?", new String[]{""+routeID}, null, null, null);
 
         cursor.moveToFirst();
@@ -135,6 +116,30 @@ public class DatabaseController {
         this.close();
 //        Log.d(TAG, stops.toString());
         return con;
+    }
+
+    // ----------------------------------------------------
+    // LIVE INFORMATION
+    // ----------------------------------------------------
+
+    public void insertLiveInformation(LiveInformation liveInfo){
+        try {
+            this.open();
+            Log.d("DB"," OPEND");
+        }
+        catch (Exception e){
+            Log.d("DB",e.getMessage());
+            return;
+        }
+        ContentValues values = LiveInformationHelper.createTravelPlanEntry(liveInfo.getStationID(), liveInfo.getTrainID(), liveInfo.getDestTime(), liveInfo.getDelay(), liveInfo.getDescription());
+        db.insert(DatabaseSchema.LiveInfo.TABLE_NAME, null, values);
+        this.close();
+    }
+
+    public void insertLiveInformationMulti(ArrayList<LiveInformation> infos){
+        for (LiveInformation l: infos){
+            this.insertLiveInformation(l);
+        }
     }
 
     public ArrayList<LiveInformation> getLiveInformation(String trainID){
@@ -171,6 +176,8 @@ public class DatabaseController {
         return liveInfo;
     }
 
+    // ----------------------------------------------------
+    // USER ACCOUNTS
     // ----------------------------------------------------
 
     public void insertUserAccount(UserAccount user){

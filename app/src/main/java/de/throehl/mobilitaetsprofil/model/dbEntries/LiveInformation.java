@@ -5,22 +5,22 @@ package de.throehl.mobilitaetsprofil.model.dbEntries;
  */
 
 public class LiveInformation {
-    private String station;
+    private String stationID;
     private String trainID;
     private String description;
     private String destTime;
     private String delay;
 
-    public LiveInformation(String station, String trainID, String description, String destTime, String delay) {
-        this.station = station;
+    public LiveInformation(String stationID, String trainID, String description, String destTime, String delay) {
+        this.stationID = stationID;
         this.trainID = trainID;
         this.description = description;
         this.destTime = destTime;
         this.delay = delay;
     }
 
-    public String getStation() {
-        return station;
+    public String getStationID() {
+        return stationID;
     }
 
     public String getTrainID() {
@@ -42,7 +42,7 @@ public class LiveInformation {
     @Override
     public String toString() {
         return "LiveInformation{" +
-                "station='" + station + '\'' +
+                "stationID='" + stationID + '\'' +
                 ", trainID='" + trainID + '\'' +
                 ", description='" + description + '\'' +
                 ", destTime='" + destTime + '\'' +

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<Paket Version="1.2" SpezVer="1" TOut="20170112054541408" KNr="3469889157">
+  <ListNachricht>
+    <Nachricht>
+      <Anschlussbewertung>
+        <ZE Typ="An">
+          <Zug Verwaltung="07" Nr="6325" Gattung="S" GattungInt="s"/>
+          <Bf EvaNr="8000262"/>
+          <Zeit Soll="20170112071100"/>
+          <Service Id="26558422189" IdZNr="6325" IdZGattung="S" IdBfEvaNr="8004204" IdZeit="20170112062400" IdTyp="An" IdZGattungInt="s" ZielBfEvaNr="8002980" Zielzeit="20170112074600" IdVerwaltung="07" SourceZNr="EFZ"/>
+          <ListAnschl>
+            <Anschl Bewertung="2">
+              <ZE Typ="Ab">
+                <Zug Verwaltung="80" Nr="1296" Gattung="IC" GattungInt="IC"/>
+                <Bf EvaNr="8000262"/>
+                <Zeit Soll="20170112072100"/>
+                <Service Id="5477479202" IdZNr="1296" IdZGattung="IC" IdBfEvaNr="8100002" IdZeit="20170112054500" IdTyp="Ab" IdZGattungInt="IC" ZielBfEvaNr="8000105" Zielzeit="20170112114000" IdVerwaltung="80" SourceZNr="EFZ"/>
+              </ZE>
+            </Anschl>
+          </ListAnschl>
+        </ZE>
+      </Anschlussbewertung>
+      <ListQuelle>
+        <Quelle Sender="RAP" Typ="Anschlussbewertung" KNr="17011205454000000" TIn="20170112054540439" TOutSnd="20170112054540305"/>
+      </ListQuelle>
+        </Nachricht>
+  </ListNachricht>
+</Paket>

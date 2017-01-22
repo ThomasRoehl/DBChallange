@@ -12,12 +12,14 @@ public abstract class ControllerFactory {
     private static DatabaseController DB_CONTROLLER;
     private static LiveInformationController LI_CONTROLLER;
     private static JsonParser JSON_PARSER;
+    private static XMLParser XML_PARSER;
 
     public static void initController(Context context){
         APPLICATION_CONTEXT = context;
         DB_CONTROLLER = new DatabaseController(APPLICATION_CONTEXT);
         LI_CONTROLLER = new LiveInformationController(APPLICATION_CONTEXT);
         JSON_PARSER = new JsonParser(APPLICATION_CONTEXT);
+        XML_PARSER = new XMLParser(APPLICATION_CONTEXT);
     }
 
     public static DatabaseController getDbController(){
@@ -30,6 +32,10 @@ public abstract class ControllerFactory {
 
     public static JsonParser getJsonParser(){
         return JSON_PARSER;
+    }
+
+    public static XMLParser getXmlParser(){
+        return XML_PARSER;
     }
 
 

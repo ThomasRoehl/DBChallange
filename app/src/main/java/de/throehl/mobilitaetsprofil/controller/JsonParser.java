@@ -26,20 +26,8 @@ public class JsonParser {
     }
 
     public void loadFile(String filename){
-        AssetManager assetManager = context.getAssets();
-        String res = null;
-        try {
-            InputStream inp = assetManager.open(filename);
-            byte[] buffer = new byte[inp.available()];
-            inp.read(buffer);
-            inp.close();
-            res = new String(buffer);
-        }
-        catch (Exception e){
-            Log.e(TAG, e.getStackTrace().toString());
-        }
-        if (res==null) Log.e(TAG, "couldn't load File: " + filename);
-        else currentText = res;
+        if (FileLoader.context == null) FileLoader.initFileLoader(this.context);
+        currentText = FileLoader.loadFile(filename);
     }
 
     public HashMap<String, String> loadLocation(){
