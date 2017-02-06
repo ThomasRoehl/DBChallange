@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">Mobilitaetsprofil</string>
+    <string name="prompt_email">Name</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="title_activity_connection_search">ConnectionSearchActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">%1$d</string>
+    <string name="search">Suchen</string>
+    <string name="title_activity_start">StartActivity</string>
+    <string name="title_activity_destination">DestinationActivity</string>
+    <string name="title_activity_found_connections">FoundConnections</string>
+    <string name="destination_example_1_1">S 9 nach Wiesbaden</string>
+    <string name="destination_example_1_2">Mühlheim am Main -> Konatabler Wache</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_connection_list">ConnectionListActivity</string>
+    <string name="title_activity_selected_connections">SelectedConnectionsActivity</string>
+    <string name="example_connecton_with_stations">
+        08:00 -> Mühlcheim am Main \n
+        08:03 -> Offenbach Ost \n
+        08:05 -> Ledermuseum \n
+    </string>
 </resources>

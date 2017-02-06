@@ -11,6 +11,7 @@ public abstract class ControllerFactory {
     private static Context APPLICATION_CONTEXT;
     private static DatabaseController DB_CONTROLLER;
     private static LiveInformationController LI_CONTROLLER;
+    private static LiveTimeTableController TT_CONTROLLER;
     private static JsonParser JSON_PARSER;
     private static XMLParser XML_PARSER;
 
@@ -20,6 +21,8 @@ public abstract class ControllerFactory {
         LI_CONTROLLER = new LiveInformationController(APPLICATION_CONTEXT);
         JSON_PARSER = new JsonParser(APPLICATION_CONTEXT);
         XML_PARSER = new XMLParser(APPLICATION_CONTEXT);
+        TT_CONTROLLER = new LiveTimeTableController();
+        FileLoader.initFileLoader(APPLICATION_CONTEXT);
     }
 
     public static DatabaseController getDbController(){
@@ -38,5 +41,10 @@ public abstract class ControllerFactory {
         return XML_PARSER;
     }
 
+    public static LiveTimeTableController getTtController() { return TT_CONTROLLER; }
+
+    public static Context getAppContext(){
+        return APPLICATION_CONTEXT;
+    }
 
 }

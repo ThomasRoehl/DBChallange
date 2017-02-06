@@ -1,0 +1,4 @@
+<!--http://iris.noncd.db.de/iris-tts/timetable/station/FRH-->
+<stations>
+    <station name="Offenbach-Bieber" eva="8004647" ds100="FOBI"/>
+</stations>

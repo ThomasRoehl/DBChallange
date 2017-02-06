@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.throehl.mobilitaetsprofil">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 
     <application
         android:allowBackup="true"
@@ -10,13 +12,61 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.MainActivity">
+
+        <activity android:name=".view.DisplayTrain"></activity>
+
+        <activity
+            android:name=".view.LoginActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".view.ConnectionSearchActivity"
+            android:label="@string/title_activity_connection_search"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.StartActivity"
+            android:label="@string/title_activity_start"
+            android:parentActivityName=".view.ConnectionSearchActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.throehl.mobilitaetsprofil.view.ConnectionSearchActivity" />
+        </activity>
+        <activity
+            android:name=".view.DestinationActivity"
+            android:label="@string/title_activity_destination"
+            android:parentActivityName=".view.ConnectionSearchActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.throehl.mobilitaetsprofil.view.ConnectionSearchActivity" />
+        </activity>
+        <activity
+            android:name=".view.FoundConnectionsActivity"
+            android:label="@string/title_activity_found_connections"
+            android:parentActivityName=".view.ConnectionSearchActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.throehl.mobilitaetsprofil.view.ConnectionSearchActivity" />
+        </activity>
+        <activity
+            android:name=".view.SelectedConnectionsActivity"
+            android:label="@string/title_activity_selected_connections"
+            android:parentActivityName=".view.FoundConnectionsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.throehl.mobilitaetsprofil.view.FoundConnectionsActivity" />
+        </activity>
+
     </application>
 
 </manifest>
