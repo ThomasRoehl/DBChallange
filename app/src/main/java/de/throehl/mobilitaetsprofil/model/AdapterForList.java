@@ -55,27 +55,35 @@ public class AdapterForList extends ArrayAdapter<String> {
 
 
         row2.setText(iteration_list.get(position));
-        row3.setText(delay_list.get(position));
         row2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (iteration_list.get(position).equals("aus")){
                     iteration_list.set(position, "an");
-                    row2.setTextColor(Color.GREEN);
+                    row2.setTextColor(Color.argb(255,14,100,27));
                 }
 
                 else {
                     iteration_list.set(position, "aus");
-                    row2.setTextColor(Color.RED);
+                    row2.setTextColor(Color.argb(255, 108,3,22));
                 }
                 a.notifyDataSetChanged();
             }
         });
 
+        row3.setText(delay_list.get(position));
         row3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                delay_list.set(position, "an");
+                if (iteration_list.get(position).equals("aus")){
+                    iteration_list.set(position, "an");
+                    row3.setTextColor(Color.argb(255,14,100,27));
+                }
+
+                else {
+                    iteration_list.set(position, "aus");
+                    row3.setTextColor(Color.argb(255, 108,3,22));
+                }
                 a.notifyDataSetChanged();
             }
         });

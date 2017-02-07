@@ -29,13 +29,13 @@
         <activity
             android:name=".view.ConnectionSearchActivity"
             android:screenOrientation="portrait"
-            android:label="@string/title_activity_connection_search"
+            android:label="@string/app_name"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.StartActivity"
             android:screenOrientation="portrait"
-            android:label="@string/title_activity_start"
+            android:label="@string/app_name"
             android:launchMode="singleTask"
             android:parentActivityName=".view.ConnectionSearchActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -46,7 +46,7 @@
         <activity
             android:name=".view.DestinationActivity"
             android:screenOrientation="portrait"
-            android:label="@string/title_activity_destination"
+            android:label="@string/app_name"
             android:launchMode="singleTask"
             android:parentActivityName=".view.ConnectionSearchActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -57,7 +57,7 @@
         <activity
             android:name=".view.FoundConnectionsActivity"
             android:screenOrientation="portrait"
-            android:label="@string/title_activity_found_connections"
+            android:label="@string/app_name"
             android:launchMode="singleTask"
             android:parentActivityName=".view.ConnectionSearchActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -68,7 +68,7 @@
         <activity
             android:name=".view.SelectedConnectionsActivity"
             android:screenOrientation="portrait"
-            android:label="@string/title_activity_selected_connections"
+            android:label="@string/app_name"
             android:launchMode="singleTask"
             android:parentActivityName=".view.FoundConnectionsActivity"
             android:theme="@style/AppTheme.NoActionBar">

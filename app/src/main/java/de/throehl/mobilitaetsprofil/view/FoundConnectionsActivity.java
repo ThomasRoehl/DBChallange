@@ -31,8 +31,8 @@ public class FoundConnectionsActivity extends AppCompatActivity {
     private TextView time2, time2b, date2, dest2, path2;
     private TextView time3, time3b, date3, dest3, path3;
 
-    private LinearLayout layer1;
-    private GridLayout layer2, layer3;
+
+    private GridLayout layer1,layer2, layer3;
 
     private ArrayList<Route> routes;
 
@@ -48,7 +48,7 @@ public class FoundConnectionsActivity extends AppCompatActivity {
 
         Log.d("TAG", "onCreate FoundConnections");
 
-        layer1 = (LinearLayout) findViewById (R.id.id_lLayout_1);
+        layer1 = (GridLayout) findViewById (R.id.id_lLayout_1);
         layer1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

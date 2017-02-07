@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mobilitaetsprofil</string>
+    <string name="app_name">Mobilitätsprofil</string>
     <string name="prompt_email">Name</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -18,7 +18,7 @@
     <string name="title_activity_destination">DestinationActivity</string>
     <string name="title_activity_found_connections">FoundConnections</string>
     <string name="destination_example_1_1">S 9 nach Wiesbaden</string>
-    <string name="destination_example_1_2">Mühlheim am Main -> Konatabler Wache</string>
+    <string name="destination_example_1_2">Mühlheim am Main -> Konstabler Wache</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_connection_list">ConnectionListActivity</string>
     <string name="title_activity_selected_connections">SelectedConnectionsActivity</string>
@@ -27,10 +27,8 @@
         08:03 -> Offenbach Ost \n
         08:05 -> Ledermuseum \n
     </string>
-    <string name="conection_row">Verbindungen</string>
-    <string name="iteration_row">
+    <string name="conection_row">Verbindungen</string><string name="iteration_row">
         Wieder-\n
         holung
-    </string>
-    <string name="dalay_row">Alarm    </string>
+    </string><string name="dalay_row">Alarm</string>
 </resources>

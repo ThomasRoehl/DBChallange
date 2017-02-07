@@ -22,27 +22,30 @@
             android:gravity="left|center_vertical|center"
             android:minWidth="210dp"
             android:maxWidth="210dp"
-                android:layout_width="240dp" />
+                android:layout_width="230dp"
+                android:textColor="@color/colorBlack" />
 
             <TextView
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:text="| aus |"
+                android:layout_width="50dp"
+                android:layout_height="45dp"
+                android:text="aus"
                 android:id="@+id/id_iteration"
-                android:gravity="center"
                 android:textSize="14sp"
-                android:layout_gravity="left|center_vertical"
-                android:layout_column="1" />
+                android:layout_gravity="center"
+                android:layout_column="1"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="center" />
 
             <TextView
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
-                android:text="| aus |"
+                android:layout_width="50dp"
+                android:layout_height="45dp"
+                android:text="aus"
                 android:id="@+id/id_dalay"
                 android:gravity="center"
                 android:textSize="14sp"
-                android:layout_gravity="center_vertical|right"
-                android:layout_column="2" />
+                android:layout_column="2"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_gravity="center" />
 
         </TableRow>
 

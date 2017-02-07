@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -35,7 +36,7 @@ public class Connections_search extends Fragment{
     Context context;
     /** Private members of the class */
     private TextView displayTime, displayDate;
-    private Button pickTime, pickDate;
+    private FrameLayout pickTime, pickDate;
     public String startLoc = "";
     public String endLoc = "";
 
@@ -143,7 +144,7 @@ public class Connections_search extends Fragment{
 
 
         displayTime = (TextView) rootView.findViewById(R.id.timeDisplay);
-        pickTime = (Button) rootView.findViewById(R.id.pickTime);
+        pickTime = (FrameLayout) rootView.findViewById(R.id.id_Time_onClock);
 
         /** Listener for click event of the button */
         pickTime.setOnClickListener(new View.OnClickListener() {
@@ -157,7 +158,7 @@ public class Connections_search extends Fragment{
         });
 
         displayDate = (TextView) rootView.findViewById(R.id.dateDisplay);
-        pickDate = (Button) rootView.findViewById(R.id.pickDate);
+        pickDate = (FrameLayout) rootView.findViewById(R.id.id_Datum_onClick);
 
 
         /** Listener for click event of the button */
