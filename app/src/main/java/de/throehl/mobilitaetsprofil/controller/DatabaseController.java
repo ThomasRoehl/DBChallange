@@ -3,6 +3,8 @@ package de.throehl.mobilitaetsprofil.controller;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
+import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -45,7 +47,7 @@ public class DatabaseController {
             db.execSQL("delete from "+ DatabaseSchema.Locations.TABLE_NAME);
             db.execSQL("delete from "+ DatabaseSchema.Transfers.TABLE_NAME);
             db.execSQL("delete from "+ DatabaseSchema.Departures.TABLE_NAME);
-            db.execSQL("delete from "+ DatabaseSchema.UserAccount.TABLE_NAME);
+//            db.execSQL("delete from "+ DatabaseSchema.UserAccount.TABLE_NAME);
             db.execSQL("delete from "+ DatabaseSchema.UserSaves.TABLE_NAME);
         }
         catch(Exception e){
@@ -78,10 +80,35 @@ public class DatabaseController {
         }
 
         for(Stop s: con.getStations()){
-            ContentValues values = TravelPlanHelper.createTravelPlanEntry(con.getTRAIN(), s.getDEPARTURE(), s.getARRIVAL(), s.getDATE(), s.getNAME(), s.getTRAINID(), con.getTRAINTYPE(),con.getROUTEID());
+            ContentValues values = TravelPlanHelper.createTravelPlanEntry(con.getTRAIN(), s.getDEPARTURE(), s.getARRIVAL(), s.getNAME(), s.getDATE(), s.getTRAINID(), con.getTRAINTYPE(),con.getROUTEID());
             db.insert(DatabaseSchema.TravelPlan.TABLE_NAME, null, values);
         }
         this.close();
+    }
+
+    public int getRouteID(String start, String time){
+        try {
+            this.open();
+            Log.d("DB"," OPEND");
+        }
+        catch (Exception e){
+            Log.d("DB",e.getMessage());
+            return -1;
+        }
+
+        Cursor cursor = db.query(DatabaseSchema.TravelPlan.TABLE_NAME, new String[]{DatabaseSchema.TravelPlan.COLUMN_NAME_ROUTEID}, DatabaseSchema.TravelPlan.COLUMN_NAME_STATION+"=? AND "+DatabaseSchema.TravelPlan.COLUMN_NAME_DEPARTIME+"=?", new String[]{start, time}, null, null, null);
+        cursor.moveToFirst();
+        if (!cursor.isAfterLast()){
+            String s = cursor.getString(0);
+            try{
+                return Integer.parseInt(s);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        close();
+        return -1;
     }
 
     public ConnectionInformation getTravelPlan(int routeID){
@@ -102,23 +129,30 @@ public class DatabaseController {
                 DatabaseSchema.TravelPlan.COLUMN_NAME_DEPARTIME,
                 DatabaseSchema.TravelPlan.COLUMN_NAME_STATION
         };
-        Cursor cursor = db.query(DatabaseSchema.TravelPlan.TABLE_NAME, columns, DatabaseSchema.TravelPlan.COLUMN_NAME_ROUTEID+"=?", new String[]{""+routeID}, null, null, null);
+        Cursor cursor = db.query(DatabaseSchema.TravelPlan.TABLE_NAME, columns, DatabaseSchema.TravelPlan.COLUMN_NAME_ROUTEID +"=?", new String[]{""+routeID}, null, null, null);
 
         cursor.moveToFirst();
         ArrayList<Stop> stops = new ArrayList<Stop>();
         int n = 0;
         while (!cursor.isAfterLast()) {
-            if (n == 0) con.setSTART(cursor.getString(4));
+            Log.d(TAG, cursor.getString(cursor.getColumnIndex(DatabaseSchema.TravelPlan.COLUMN_NAME_STATION))
+                    + "\t" +cursor.getString(cursor.getColumnIndex(DatabaseSchema.TravelPlan.COLUMN_NAME_ARRIVTIME))
+                    + "\t" +cursor.getString(cursor.getColumnIndex(DatabaseSchema.TravelPlan.COLUMN_NAME_DEPARTIME))
+                    + "\t" +cursor.getString(cursor.getColumnIndex(DatabaseSchema.TravelPlan.COLUMN_NAME_DATE))
+                    + "\t" +cursor.getString(cursor.getColumnIndex(DatabaseSchema.TravelPlan.COLUMN_NAME_TRAIN))
+                    + "\t" +cursor.getString(cursor.getColumnIndex(DatabaseSchema.TravelPlan.COLUMN_NAME_TRAINTYPE))
+                    + "\t" +cursor.getString(cursor.getColumnIndex(DatabaseSchema.TravelPlan.COLUMN_NAME_TRAINID)));
+            if (n == 0) con.setSTART(cursor.getString(cursor.getColumnIndex(DatabaseSchema.TravelPlan.COLUMN_NAME_STATION)));
             else{
-                con.setDEST(cursor.getString(4));
+                con.setDEST(cursor.getString(cursor.getColumnIndex(DatabaseSchema.TravelPlan.COLUMN_NAME_STATION)));
             }
-            stops.add(new Stop(cursor.getString(4),
-                    cursor.getString(1),
-                    cursor.getString(5),
-                    cursor.getString(6),
-                    Integer.parseInt(cursor.getString(3))));
-            con.setTRAINTYPE(cursor.getString(3));
-            con.setTRAIN(cursor.getString(0));
+            stops.add(new Stop(cursor.getString(cursor.getColumnIndex(DatabaseSchema.TravelPlan.COLUMN_NAME_STATION)),
+                    cursor.getString(cursor.getColumnIndex(DatabaseSchema.TravelPlan.COLUMN_NAME_ARRIVTIME)),
+                    cursor.getString(cursor.getColumnIndex(DatabaseSchema.TravelPlan.COLUMN_NAME_DEPARTIME)),
+                    cursor.getString(cursor.getColumnIndex(DatabaseSchema.TravelPlan.COLUMN_NAME_DATE)),
+                    cursor.getString(cursor.getColumnIndex(DatabaseSchema.TravelPlan.COLUMN_NAME_TRAINID))));
+            con.setTRAINTYPE(cursor.getString(cursor.getColumnIndex(DatabaseSchema.TravelPlan.COLUMN_NAME_TRAINTYPE)));
+            con.setTRAIN(cursor.getString(cursor.getColumnIndex(DatabaseSchema.TravelPlan.COLUMN_NAME_TRAIN)));
 
             n += 1;
             cursor.moveToNext();
@@ -188,6 +222,8 @@ public class DatabaseController {
         }
         cursor.close();
 
+        close();
+
         return liveInfo;
     }
 
@@ -198,7 +234,7 @@ public class DatabaseController {
     public void insertUserAccount(UserAccount user){
         try {
             this.open();
-            Log.d("DB"," OPEND");
+            Log.d("DB"," OPEND FOR INSERT USERACCOUNT");
         }
         catch (Exception e){
             Log.d("DB",e.getMessage());
@@ -208,6 +244,26 @@ public class DatabaseController {
         db.insert(DatabaseSchema.UserAccount.TABLE_NAME, null, con);
 
         this.close();
+    }
+
+    public int getUserID(UserAccount user){
+        try {
+            this.open();
+            Log.d("DB"," OPEND");
+        }
+        catch (Exception e){
+            Log.d("DB",e.getMessage());
+            return -1;
+        }
+
+        Cursor cursor = db.query(DatabaseSchema.UserAccount.TABLE_NAME, new String[]{DatabaseSchema.UserAccount._ID}, DatabaseSchema.UserAccount.COLUMN_NAME_USERNAME+"=? AND "+DatabaseSchema.UserAccount.COLUMN_NAME_PASSWORD+"=?", new String[]{user.getName(), user.getPassword()}, null, null, null);
+        cursor.moveToFirst();
+        if (!cursor.isAfterLast()){
+            String s = cursor.getString(0);
+            return Integer.parseInt(s);
+        }
+        this.close();
+        return -1;
     }
 
     public void insertUserSave(UserSaves save){
@@ -238,5 +294,42 @@ public class DatabaseController {
         db.insert(DatabaseSchema.Transfers.TABLE_NAME, null, con);
 
         this.close();
+    }
+
+    public long countUserSaves(String userID){
+        try {
+            this.open();
+            Log.d("DB"," OPEND");
+        }
+        catch (Exception e){
+            Log.d("DB",e.getMessage());
+            return 0;
+        }
+        long num = DatabaseUtils.longForQuery(db, "SELECT COUNT(*) FROM " + DatabaseSchema.UserSaves.TABLE_NAME + " WHERE " + DatabaseSchema.UserSaves.COLUMN_NAME_USERID + "=?", new String[]{userID});
+        return num;
+    }
+
+    public ArrayList<String> getUserSaves(String userID){
+        Log.d(TAG, "USERID:\t"+userID);
+        ArrayList<String> res = new ArrayList<String>();
+        try {
+            this.open();
+            Log.d("DB"," OPEND");
+        }
+        catch (Exception e){
+            Log.d("DB",e.getMessage());
+            return res;
+        }
+        Cursor cursor = db.query(DatabaseSchema.UserSaves.TABLE_NAME, new String[]{DatabaseSchema.UserSaves.COLUMN_NAME_ROUTEID}, DatabaseSchema.UserSaves.COLUMN_NAME_USERID+"=?", new String[]{""+userID}, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            res.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        close();
+        Log.d(TAG, res.toString());
+        return res;
     }
 }

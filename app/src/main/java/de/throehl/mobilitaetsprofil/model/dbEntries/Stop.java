@@ -9,9 +9,9 @@ public class Stop {
     private String DEPARTURE;
     private String ARRIVAL;
     private String DATE;
-    private int TRAINID;
+    private String TRAINID;
 
-    public Stop(String NAME, String ARRIVAL, String DEPARTURE, String DATE, int TRAINID) {
+    public Stop(String NAME, String ARRIVAL, String DEPARTURE, String DATE, String TRAINID) {
         this.NAME = NAME;
         this.DEPARTURE = DEPARTURE;
         this.ARRIVAL = ARRIVAL;
@@ -35,7 +35,7 @@ public class Stop {
         return ARRIVAL;
     }
 
-    public int getTRAINID() {
+    public String getTRAINID() {
         return TRAINID;
     }
 

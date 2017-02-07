@@ -322,7 +322,7 @@ FFK,Frankfurter Kreuz,Üst
 FFL,Friedlos,Hp
 FFLA,Flacht,Tp
 FFLF,Frankfurt am Main Flughafen Fernbahnho,Bf
-FFLU,Frankfurt(M) Flughafen Regionalbf,Bf
+FFLU,Frankfurt am Main Flughafen Regionalbf,Bf
 FFLUB,Frankfurt (Main) Flughafen Bus,Bush
 FFME,Frankfurt am Main Messe,Hp
 FFMK,Frankfurt-Mainkur,Bf
@@ -351,8 +351,8 @@ FFS,Frankfurt (Main) Süd,Bf
 FFS 1,Frankfurt (Main) Süd (Est),Est
 FFS A,Frankfurt (Main) Süd Abstellbahnhof,Bft
 FFS G,Frankfurt (Main) Süd Gbf,Bft
-FFT,Frankfurt Hbf (tief),Bft
-FFTA,Frankfurt(M)Taunusanlage,Bf
+FFT,Frankfurt (Main) Hbf (tief),Bft
+FFTA,Frankfurt (Main) Taunusanlage,Bf
 FFTG,Frankfurt (Main) Hgbf,Bf
 FFTGB,Frankfurt (Main) Hgbf Berg,Bft
 FFTGE,Frankfurt (Main) Hgbf Einfahrgruppe,Bft
@@ -482,7 +482,7 @@ FHAN,Haine,Tp
 FHAR,Hartenrod (Kr Biedenkopf),Bf
 FHAS,Hattersheim (Main),Bf
 FHAT,Hattenheim,Bf
-FHAU,Frankfurt(M)Hauptwache,Bf
+FHAU,Frankfurt (Main) Hauptwache,Bf
 FHBG,Herrnberg (Dillkr),Tp
 FHBH,Heimboldshausen,Bf
 FHBK,Heimboldshausen Kreisbahn,Bf
@@ -637,7 +637,7 @@ FKOBI,Korbach,Anst
 FKOBK,Korbach Am Kreisel,Bush
 FKOBZ,Korbach Ziegelhütte,Bush
 FKOE,Königstein (Taunus),Bf
-FKON,Frankfurt(M)Konstablerwache,Bf
+FKON,Frankfurt (Main) Konstablerwache,Bf
 FKOO,Kostheim Ost,Abzw
 FKOS,Kostheim,Abzw
 FKOT,Körle Ost Bbf,Bf
@@ -805,7 +805,7 @@ FMTR,Münster (b Dieburg),Hp
 FMTS,Montabaur Seelbach,Anst
 FMTZ,Sandbach (Odw) Metzeler,Awanst
 FMUE,Münzenberg,Bf
-FMUL,Frankfurt(M)Mühlberg,Bf
+FMUL,Frankfurt (Main) Mühlberg,Bf
 FMW,Mainz-Weisenau,Hp
 FMWG,Mainz-Weisenau Gbf,Bf
 FMZ,Mainz Hbf,Bf
@@ -905,15 +905,15 @@ FOFH,Offenbach (Dillkr),Hp Anst
 FOHF,Osthofen,Bf
 FOHS,Dreikirchen,Hp
 FOK,Okarben,Hp
-FOKL,Offenbach(Main) Kaiserlei,Hp
+FOKL,Offenbach-Kaiserlei,Hp
 FOKN,Oberkaufungen,Bf
 FOLK,Ohlenbeck Gasthaus,Bush
-FOLM,Offenbach(Main) Ledermuseum,Hp
+FOLM,Offenbach Ledermuseum,Hp
 FOM,Ostheim (b Butzbach),Hp
-FOMP,Offenbach(Main) Marktplatz,Hp
+FOMP,Offenbach Marktplatz,Hp
 FONH,Ober-Niederhone,Hp
 FONN,Oberneisen,Bf
-FOO,Offenbach(Main)Ost,Hp
+FOO,Offenbach (Main) Ost,Hp
 FOPN,Oppershofen,Bf
 FOPP,Oppenheim,Bf
 FOR,Bad Orb,Bf
@@ -928,7 +928,7 @@ FOS,Ostheim (Kr Hanau),Hp
 FOSD,Oberscheden,Bf
 FOSN,Oberelsungen,Hp
 FOSS,Oberselters (Plng NBS),Bk
-FOST,Frankfurt(M)Ostendstraße,Bf
+FOST,Frankfurt (Main) Ostendstraße,Bf
 FOT,Ottrau,Anst
 FOTS,Obertshausen (Kr Offenbach),Bf
 FOU,Oberursel (Taunus),Bf

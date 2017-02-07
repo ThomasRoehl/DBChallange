@@ -1,6 +1,9 @@
 package de.throehl.mobilitaetsprofil.controller;
 
 import android.content.Context;
+import android.util.Log;
+
+import static android.R.attr.id;
 
 /**
  * Created by thomas on 19.01.17.
@@ -14,6 +17,9 @@ public abstract class ControllerFactory {
     private static LiveTimeTableController TT_CONTROLLER;
     private static JsonParser JSON_PARSER;
     private static XMLParser XML_PARSER;
+    private static String USERID;
+
+    private static final String TAG = "ControllerFactory";
 
     public static void initController(Context context){
         APPLICATION_CONTEXT = context;
@@ -24,6 +30,13 @@ public abstract class ControllerFactory {
         TT_CONTROLLER = new LiveTimeTableController();
         FileLoader.initFileLoader(APPLICATION_CONTEXT);
     }
+
+    public static void setID(String id){
+        USERID = id;
+        Log.d(TAG, "USER ID:\t"+id);
+    }
+
+    public static String getID(){ return USERID;}
 
     public static DatabaseController getDbController(){
         return DB_CONTROLLER;

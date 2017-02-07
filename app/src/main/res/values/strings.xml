@@ -8,6 +8,7 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
+    <string name="error_user_pw">Password or Login is incorrect</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="title_activity_connection_search">ConnectionSearchActivity</string>
     <string name="action_settings">Settings</string>
@@ -26,4 +27,10 @@
         08:03 -> Offenbach Ost \n
         08:05 -> Ledermuseum \n
     </string>
+    <string name="conection_row">Verbindungen</string>
+    <string name="iteration_row">
+        Wieder-\n
+        holung
+    </string>
+    <string name="dalay_row">Alarm    </string>
 </resources>

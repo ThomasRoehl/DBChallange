@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import de.throehl.mobilitaetsprofil.R;
 import de.throehl.mobilitaetsprofil.controller.ControllerFactory;
 import de.throehl.mobilitaetsprofil.controller.ViewControllerFactory;
+import de.throehl.mobilitaetsprofil.model.dbEntries.UserAccount;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -37,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
          */
 
         ControllerFactory.initController(getApplicationContext());
+        ControllerFactory.getDbController().emptyTables();
         ViewControllerFactory.addActivity(className, this);
 
         /*
@@ -61,7 +64,18 @@ public class LoginActivity extends AppCompatActivity {
         mSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                if (!attemptLogin()) return;
+
+                String name = mEmailView.getText().toString();
+                String pw = mPasswordView.getText().toString();
+                UserAccount user = new UserAccount(name, pw);
+                int userID = ControllerFactory.getDbController().getUserID(user);
+                Log.d("LOGIN", "USERID:\t" + userID);
+                if (userID == -1){
+                    mPasswordView.setError(getString(R.string.error_user_pw));
+                    return;
+                }
+                ControllerFactory.setID(ControllerFactory.getDbController().getUserID(user)+"");
 
                 Intent intent = new Intent(ControllerFactory.getAppContext(), ConnectionSearchActivity.class);
                 intent.putExtra("ACTIVITY", className);
@@ -74,7 +88,17 @@ public class LoginActivity extends AppCompatActivity {
         mRegisterButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                if (!attemptLogin()) return;
+
+                String name = mEmailView.getText().toString();
+                String pw = mPasswordView.getText().toString();
+                UserAccount user = new UserAccount(name, pw);
+                int userID = ControllerFactory.getDbController().getUserID(user);
+                Log.d("LOGIN", "USERID:\t" + userID);
+                if (userID == -1){
+                    ControllerFactory.getDbController().insertUserAccount(user);
+                    ControllerFactory.setID(ControllerFactory.getDbController().getUserID(user)+"");
+                }
 
                 Intent intent = new Intent(ControllerFactory.getAppContext(), ConnectionSearchActivity.class);
                 intent.putExtra("ACTIVITY", className);
@@ -87,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
         mProgressView = findViewById(R.id.login_progress);
     }
 
-    private void attemptLogin() {
+    private boolean attemptLogin() {
 
         // Reset errors.
         mEmailView.setError(null);
@@ -101,9 +125,11 @@ public class LoginActivity extends AppCompatActivity {
         View focusView = null;
 
         if (!TextUtils.isEmpty(password)){
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
+            if (mPasswordView.getText().length() < 4) {
+                mPasswordView.setError(getString(R.string.error_invalid_password));
+                focusView = mPasswordView;
+                cancel = true;
+            }
         }
 
         if (TextUtils.isEmpty(email)) {
@@ -115,6 +141,7 @@ public class LoginActivity extends AppCompatActivity {
         if (cancel) {
             focusView.requestFocus();
         }
+        return !cancel;
     }
 }
 

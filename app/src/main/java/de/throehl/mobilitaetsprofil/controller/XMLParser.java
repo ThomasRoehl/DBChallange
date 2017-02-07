@@ -133,12 +133,19 @@ public class XMLParser {
     public ArrayList<Route> readTimeTableXML(String stationName){
         ArrayList<Route> route = new ArrayList<Route>();
         try{
+            String id = "";
             parser.require(XmlPullParser.START_TAG, ns, "timetable");
             while(parser.next() != XmlPullParser.END_DOCUMENT){
                 if (parser.getEventType() != XmlPullParser.START_TAG) continue;
                 String name = parser.getName();
                 if (name.equals("s")){
                     parser.require(XmlPullParser.START_TAG, ns, "s");
+                    id = parser.getAttributeValue(ns, "id");
+                    String[] tmp = id.split("-");
+                    id = "";
+                    for (int i = 0; i < tmp.length-1; i++){
+                        id += tmp[i];
+                    }
                     continue;
                 }
                 if (name.equals("tl")){
@@ -158,7 +165,7 @@ public class XMLParser {
 //                    Log.d(TAG, "DPTrack\t"+parser.getAttributeValue(ns, "pp"));
 //                    Log.d(TAG, "DPTrainNumber\t"+parser.getAttributeValue(ns, "l"));
 //                    Log.d(TAG, "DPPath\t"+ Arrays.toString(parser.getAttributeValue(ns, "ppth").split("\\|")));
-                    Route r = new Route("1");
+                    Route r = new Route(id);
                     r.setTrainName(trainName + parser.getAttributeValue(ns, "l"));
                     r.setCurrentStop(stationName);
                     r.setTrack(parser.getAttributeValue(ns, "pp"));

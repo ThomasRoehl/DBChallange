@@ -34,6 +34,8 @@ public class FoundConnectionsActivity extends AppCompatActivity {
     private LinearLayout layer1;
     private GridLayout layer2, layer3;
 
+    private ArrayList<Route> routes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,13 +46,22 @@ public class FoundConnectionsActivity extends AppCompatActivity {
         ViewControllerFactory.addActivity(className, this);
 
 
-        layer1 = (LinearLayout) findViewById (R.id.id_lLayout_1);
+        Log.d("TAG", "onCreate FoundConnections");
 
+        layer1 = (LinearLayout) findViewById (R.id.id_lLayout_1);
         layer1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(getBaseContext(), "hello", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getBaseContext(), SelectedConnectionsActivity.class);
+                Intent intent = new Intent(ControllerFactory.getAppContext(), SelectedConnectionsActivity.class);
+                intent.putExtra("ACTIVITY", className);
+                intent.putExtra("START",start.getText());
+                intent.putExtra("DEST",dest.getText());
+                intent.putExtra("TRAIN",dest1.getText());
+                intent.putExtra("TIME1",time1.getText());
+                intent.putExtra("TIME2",time1b.getText());
+                intent.putExtra("DATE",date1.getText());
+                intent.putExtra("PATH",routes.get(0).getRouteAfter());
+                intent.putExtra("ID", routes.get(0).getID());
                 startActivity(intent);
             }
         });
@@ -59,7 +70,16 @@ public class FoundConnectionsActivity extends AppCompatActivity {
         layer2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), SelectedConnectionsActivity.class);
+                Intent intent = new Intent(ControllerFactory.getAppContext(), SelectedConnectionsActivity.class);
+                intent.putExtra("ACTIVITY", className);
+                intent.putExtra("START",start.getText());
+                intent.putExtra("DEST",dest.getText());
+                intent.putExtra("TRAIN",dest2.getText());
+                intent.putExtra("TIME1",time2.getText());
+                intent.putExtra("TIME2",time2b.getText());
+                intent.putExtra("DATE",date2.getText());
+                intent.putExtra("PATH",routes.get(1).getRouteAfter());
+                intent.putExtra("ID", routes.get(1).getID());
                 startActivity(intent);
             }
         });
@@ -68,7 +88,16 @@ public class FoundConnectionsActivity extends AppCompatActivity {
         layer3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), SelectedConnectionsActivity.class);
+                Intent intent = new Intent(ControllerFactory.getAppContext(), SelectedConnectionsActivity.class);
+                intent.putExtra("ACTIVITY", className);
+                intent.putExtra("START",start.getText());
+                intent.putExtra("DEST",dest.getText());
+                intent.putExtra("TRAIN",dest2.getText());
+                intent.putExtra("TIME1",time2.getText());
+                intent.putExtra("TIME2",time2b.getText());
+                intent.putExtra("DATE",date2.getText());
+                intent.putExtra("PATH",routes.get(2).getRouteAfter());
+                intent.putExtra("ID", routes.get(2).getID());
                 startActivity(intent);
             }
         });
@@ -111,38 +140,41 @@ public class FoundConnectionsActivity extends AppCompatActivity {
             if (endloc.equals("Frankfurt (Main) Hbf (tief)")) dest.setText("Frankfurt Hbf (tief)");
             date = intent.getExtras().getString("DATE");
             time = intent.getExtras().getString("TIME");
-            Log.d("TAG", transformDate(date));
-            Log.d("TAG", transformTime(time));
+            Log.d("TAG", "DATE\t"+transformDate(date));
+            Log.d("TAG", "TIME\t"+transformTime(time));
 
         }
     }
 
     public void loadRoutes(){
-        ArrayList<Route> table = ControllerFactory.getTtController().findRoute(start.getText().toString(), dest.getText().toString(), transformTime(time), transformDate(date), 3, "60");
+        ArrayList<Route> table = ControllerFactory.getTtController().findRoute(start.getText().toString(), dest.getText().toString(), transformTime(time), transformDate(date), 3, "120");
+        routes = new ArrayList<Route>();
         for (int i = 0; i < table.size(); i++){
             String[] td = retransformDateTime(table.get(i).getDp());
-            Log.d("TAG", "i:\t"+i);
             switch (i){
                 case 0:
                     time1.setText(td[1]);
                     time1b.setText(table.get(i).getDp());
                     date1.setText(td[0]);
                     dest1.setText(table.get(i).getTrainName() + " nach " +table.get(i).getRouteAfter().get(table.get(i).getRouteAfter().size()-1));
-                    path1.setText(table.get(i).getRouteAfter().subList(0,2).toString().replace("]", "")+" ...");
+                    routes.add(table.get(i));
+//                    path1.setText(table.get(i).getRouteAfter().subList(0,2).toString().replace("]", "")+" ...");
                     continue;
                 case 1:
                     time2.setText(td[1]);
                     time2b.setText(table.get(i).getDp());
                     date2.setText(td[0]);
                     dest2.setText(table.get(i).getTrainName() + " nach " +table.get(i).getRouteAfter().get(table.get(i).getRouteAfter().size()-1));
-                    path2.setText(table.get(i).getRouteAfter().subList(0,2).toString().replace("]", "")+" ...");
+//                    path2.setText(table.get(i).getRouteAfter().subList(0,2).toString().replace("]", "")+" ...");
+                    routes.add(table.get(i));
                     continue;
                 case 2:
                     time3.setText(td[1]);
                     time3b.setText(table.get(i).getDp());
                     date3.setText(td[0]);
                     dest3.setText(table.get(i).getTrainName() + " nach " +table.get(i).getRouteAfter().get(table.get(i).getRouteAfter().size()-1));
-                    path3.setText(table.get(i).getRouteAfter().subList(0,2).toString().replace("]", "")+" ...");
+//                    path3.setText(table.get(i).getRouteAfter().subList(0,2).toString().replace("]", "")+" ...");
+                    routes.add(table.get(i));
                     continue;
             }
         }
@@ -157,9 +189,9 @@ public class FoundConnectionsActivity extends AppCompatActivity {
     }
 
     public String transformDate(String date){
-        String year = date.split(". ")[2];
-        String day = date.split(". ")[0];
-        String month = date.split(". ")[1];
+        String year = date.split("\\. ")[2];
+        String day = date.split("\\. ")[0];
+        String month = date.split("\\. ")[1];
         return year.substring(2) + month + day;
     }
 

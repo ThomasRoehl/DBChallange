@@ -189,8 +189,34 @@ public class LiveTimeTableController {
         return null;
     }
 
+    public String getDestTime(String stationName, String trainID, String date, String time){
+        String t = time.substring(0,2);
+        Log.d("SHOW", stationName + "\t" + date + "\t" + time);
+        ArrayList<Route> routes = loadTimeTable(stationName, date, t);
+        try{
+            int i = Integer.parseInt(t);
+            routes.addAll(loadTimeTable(stationName, date, (i+1)+""));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        for (Route r: routes){
+            if (r.getID().equals(trainID)) return r.getDp();
+        }
+        return null;
+    }
+
     public ArrayList<Route> findRoute(String station, String dest, String time, String date, int amount, String timeRange){
-        ArrayList<Route> routes = loadTimeTable(station, date, time.substring(0,2));
+        String t = time.substring(0,2);
+        ArrayList<Route> routes = loadTimeTable(station, date, t);
+        try{
+            int i = Integer.parseInt(t);
+            routes.addAll(loadTimeTable(station, date, (i+1)+""));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
         Log.d(TAG, "loading done!\n found:\t" + routes.size());
 
         ArrayList<Route> tmp = new ArrayList<Route>();

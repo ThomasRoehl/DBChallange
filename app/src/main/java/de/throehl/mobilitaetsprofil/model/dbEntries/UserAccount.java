@@ -18,11 +18,12 @@ public class UserAccount {
     private String userID;
     public final String TAG = "UserAccount";
 
-    public UserAccount(String name, String pw, String userID){
+    public UserAccount(String name, String pw){
         this.password = pw;
         this.name = name;
-        this.userID = userID;
     }
+
+    public void setUserID(String id){ userID = id;}
 
     public String getPassword() {
         return password;

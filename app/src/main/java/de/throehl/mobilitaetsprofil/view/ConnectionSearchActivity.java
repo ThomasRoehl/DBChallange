@@ -23,7 +23,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import de.throehl.mobilitaetsprofil.R;
+import de.throehl.mobilitaetsprofil.controller.ControllerFactory;
 import de.throehl.mobilitaetsprofil.controller.ViewControllerFactory;
+import de.throehl.mobilitaetsprofil.model.dbEntries.ConnectionInformation;
 
 public class ConnectionSearchActivity extends AppCompatActivity {
 
@@ -32,7 +34,8 @@ public class ConnectionSearchActivity extends AppCompatActivity {
     private String start = "";
     private String dest = "";
     private final String TAG = "CSA";
-    Connections_search tab1;
+    private Connections_search tab1;
+    private Your_connections tab3;
 
 
     @Override
@@ -74,6 +77,8 @@ public class ConnectionSearchActivity extends AppCompatActivity {
         if (tab1 != null)
             tab1.updateView(start, dest);
         displayItem();
+        if (tab3 != null)
+            checkForNewRoutes();
         Log.d(TAG, "onResume");
     }
 
@@ -88,7 +93,8 @@ public class ConnectionSearchActivity extends AppCompatActivity {
     private void checkForExist(){
         Intent i = getIntent();
         if (i.getExtras() != null){
-            ViewControllerFactory.closeActivity(i.getExtras().getString("ACTIVITY"));
+            if (i.getExtras().containsKey("ACTIVITY"))
+                ViewControllerFactory.closeActivity(i.getExtras().getString("ACTIVITY"));
         }
     }
 
@@ -124,6 +130,18 @@ public class ConnectionSearchActivity extends AppCompatActivity {
             if (i.getExtras().containsKey("VIEW")) {
                 int view = (int) getIntent().getExtras().get("VIEW");
                 mViewPager.setCurrentItem(view);
+            }
+        }
+    }
+
+    private void checkForNewRoutes(){
+        Intent i = getIntent();
+        if (i.getExtras() != null){
+            if (i.getExtras().containsKey("ADDED")){
+                int id = (int) getIntent().getExtras().get("ADDED");
+                Log.d(TAG, "ID:\t"+id);
+                ConnectionInformation conInfo = ControllerFactory.getDbController().getTravelPlan(id);
+//                tab3.addEntry(id, conInfo.getStations().get(0).getDATE(),conInfo.getTRAIN(), conInfo.getSTART(), conInfo.getStations().get(0).getDEPARTURE(), conInfo.getDEST(), conInfo.getStations().get(conInfo.getStations().size() -1).getDEPARTURE());
             }
         }
     }
@@ -175,7 +193,8 @@ public class ConnectionSearchActivity extends AppCompatActivity {
                     Calender tab2 = Calender.newInstance(getApplicationContext());
                     return tab2;
                 case 2:
-                    Your_connections tab3 = new Your_connections();
+                    if (tab3 == null)
+                        tab3 = new Your_connections();
                     return tab3;
                 default:
                     return null;

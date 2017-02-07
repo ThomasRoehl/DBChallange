@@ -17,14 +17,14 @@ public class DummyTravelPlan {
 
     private String[] stations = new String[]{"Muehlheim am Main", "Offenbach Ost", "Offenbach Marktplatz", "Offenbach Ledermuseum", "Muehlberg", "Konstablerwache", "Hauptwache", "Frankfurt Hauptbahnhof"};
 
-    private  Stop stop1 = new Stop("Muehlheim am Main", "08:08", "08:09", "2016-10-10", 0 );
-    private  Stop stop2 = new Stop("Offenbach Ost", "08:10", "08:11", "2016-10-10", 0 );
-    private  Stop stop3 = new Stop("Offenbach Marktplatz", "08:15", "08:16", "2016-10-10", 0 );
-    private  Stop stop4 = new Stop("Offenbach Ledermuseum", "08:20", "08:21", "2016-10-10", 0 );
-    private  Stop stop5 = new Stop("Muehlberg", "08:25", "08:26", "2016-10-10", 0 );
-    private  Stop stop6 = new Stop("Konstablerwache", "08:30", "08:31", "2016-10-10", 0 );
-    private  Stop stop7 = new Stop("Hauptwache", "08:35", "08:36", "2016-10-10", 0 );
-    private  Stop stop8 = new Stop("Frankfurt Hauptbahnhof", "08:40", "08:41", "2016-10-10", 0 );
+    private  Stop stop1 = new Stop("Muehlheim am Main", "08:08", "08:09", "2016-10-10", "0" );
+    private  Stop stop2 = new Stop("Offenbach Ost", "08:10", "08:11", "2016-10-10", "0" );
+    private  Stop stop3 = new Stop("Offenbach Marktplatz", "08:15", "08:16", "2016-10-10", "0" );
+    private  Stop stop4 = new Stop("Offenbach Ledermuseum", "08:20", "08:21", "2016-10-10", "0" );
+    private  Stop stop5 = new Stop("Muehlberg", "08:25", "08:26", "2016-10-10", "0" );
+    private  Stop stop6 = new Stop("Konstablerwache", "08:30", "08:31", "2016-10-10", "0" );
+    private  Stop stop7 = new Stop("Hauptwache", "08:35", "08:36", "2016-10-10", "0" );
+    private  Stop stop8 = new Stop("Frankfurt Hauptbahnhof", "08:40", "08:41", "2016-10-10", "0" );
 
     private  ConnectionInformation con1 = new ConnectionInformation();
     private  ConnectionInformation con2 = new ConnectionInformation();

@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 
 public abstract class TravelPlanHelper {
 
-    public static ContentValues createTravelPlanEntry(String train, String depa, String arri, String station, String date, int id, String type, int routeID){
+    public static ContentValues createTravelPlanEntry(String train, String depa, String arri, String station, String date, String id, String type, int routeID){
         ContentValues values = new ContentValues();
         values.put(DatabaseSchema.TravelPlan.COLUMN_NAME_TRAIN, train);
         values.put(DatabaseSchema.TravelPlan.COLUMN_NAME_DEPARTIME, depa);

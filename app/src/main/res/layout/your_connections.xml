@@ -1,6 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -8,13 +8,67 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="de.throehl.mobilitaetsprofil.view.ConnectionSearchActivity">
 
-    <GridView
-        android:layout_width="match_parent"
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:id="@+id/tableLayout"
+        android:orientation="horizontal">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/conection_row"
+                android:id="@+id/textView34"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="16sp"
+                android:layout_gravity="left|center_vertical"
+                android:layout_column="0"
+                android:gravity="center"
+                android:minWidth="190dp"
+                android:maxWidth="190dp"
+                android:nestedScrollingEnabled="true" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/iteration_row"
+                android:id="@+id/textView35"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:layout_gravity="left|center_vertical"
+                android:layout_column="1" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dalay_row"
+                android:id="@+id/textView36"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_gravity="center_vertical|right"
+                android:layout_column="2" />
+
+
+        </TableRow>
+
+    </TableLayout>
+
+    <ListView
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/section_label"
-        android:columnWidth="50dp"
-        android:numColumns="4"
-        android:id="@+id/gridview" />
+        android:id="@+id/conList"
+        android:layout_below="@+id/tableLayout" />
 
 </RelativeLayout>

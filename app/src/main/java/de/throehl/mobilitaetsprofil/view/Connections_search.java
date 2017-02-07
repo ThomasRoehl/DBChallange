@@ -177,10 +177,11 @@ public class Connections_search extends Fragment{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ControllerFactory.getAppContext(), FoundConnectionsActivity.class);
-                intent.putExtra("START", startLoc);
-                intent.putExtra("DEST", endLoc);
-                intent.putExtra("TIME", displayTime.getText());
-                intent.putExtra("DATE", displayDate.getText());
+                Log.d("TEST", vonEditText.getText().toString() + "\t"+ nachEditText.getText().toString());
+                intent.putExtra("START", vonEditText.getText().toString());
+                intent.putExtra("DEST", nachEditText.getText().toString());
+                intent.putExtra("TIME", displayTime.getText().toString());
+                intent.putExtra("DATE", displayDate.getText().toString());
                 startActivity(intent);
 
             }
