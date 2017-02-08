@@ -1,6 +1,7 @@
 package de.throehl.mobilitaetsprofil.view;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,11 +22,17 @@ import android.view.ViewGroup;
 
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import de.throehl.mobilitaetsprofil.R;
 import de.throehl.mobilitaetsprofil.controller.ControllerFactory;
 import de.throehl.mobilitaetsprofil.controller.ViewControllerFactory;
+import de.throehl.mobilitaetsprofil.dummy.DummyTravelPlan;
 import de.throehl.mobilitaetsprofil.model.dbEntries.ConnectionInformation;
+import de.throehl.mobilitaetsprofil.model.dbEntries.Transfers;
+import de.throehl.mobilitaetsprofil.model.dbEntries.UserSaves;
 
 public class ConnectionSearchActivity extends AppCompatActivity {
 
@@ -36,13 +43,17 @@ public class ConnectionSearchActivity extends AppCompatActivity {
     private final String TAG = "CSA";
     private Connections_search tab1;
     private Your_connections tab3;
+    public static String className;
+
+    private Handler transferHandler;
+    private Runnable transferRun;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connection_search);
-
+        className = this.getClass().getName();
         ViewControllerFactory.addActivity(this.getClass().getName(), this);
         checkForExist();
 
@@ -61,9 +72,31 @@ public class ConnectionSearchActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
         displayItem();
         Log.d(TAG, "onCreate");
+        DummyTravelPlan d = new DummyTravelPlan();
+        ControllerFactory.getDbController().insertTravelPlan(d.getCon(1));
+
+        transferHandler = new Handler();
+        transferRun = new Runnable() {
+            @Override
+            public void run() {
+                transferCheck();
+            }
+        };
+        transferHandler.postDelayed(transferRun, 5000);
+    }
+
+    public void transferCheck(){
+        Log.d(TAG, "Do transferCheck");
+        ArrayList<String> res = ControllerFactory.getDbController().getTransfer(ControllerFactory.getID());
+        for (String s: res){
+            Log.d(TAG, "Transfer Recieved");
+            Toast.makeText(ControllerFactory.getAppContext(), "Neue Verbindung erhalten", Toast.LENGTH_SHORT).show();
+            ControllerFactory.getDbController().insertUserSave(new UserSaves(ControllerFactory.getID(), s));
+        }
+        ControllerFactory.getDbController().removeTransfer(ControllerFactory.getID());
+        transferHandler.postDelayed(transferRun, 10000);
     }
 
     @Override
@@ -163,6 +196,7 @@ public class ConnectionSearchActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            ControllerFactory.getDbController().insertTransfer(new Transfers("99", ControllerFactory.getID(), "99"));
             return true;
         }
 

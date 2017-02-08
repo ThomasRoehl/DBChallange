@@ -9,6 +9,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import de.throehl.mobilitaetsprofil.model.DatabaseSchema;
@@ -282,6 +283,7 @@ public class DatabaseController {
     }
 
     public void insertTransfer(Transfers transfer){
+        Log.d(TAG, "insert Transfer"+transfer.getReceiverID());
         try {
             this.open();
             Log.d("DB"," OPEND");
@@ -294,6 +296,41 @@ public class DatabaseController {
         db.insert(DatabaseSchema.Transfers.TABLE_NAME, null, con);
 
         this.close();
+    }
+
+    public ArrayList<String> getTransfer(String userID){
+        ArrayList<String> res = new ArrayList<String>();
+        try {
+            this.open();
+            Log.d("DB"," OPEND");
+        }
+        catch (Exception e){
+            Log.d("DB",e.getMessage());
+            return res;
+        }
+        Cursor cursor = db.query(DatabaseSchema.Transfers.TABLE_NAME, new String[]{DatabaseSchema.Transfers.COLUMN_NAME_ROUTEID}, DatabaseSchema.Transfers.COLUMN_NAME_RECEIVER+"=?", new String[]{""+userID}, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            res.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        close();
+        return res;
+    }
+
+    public void removeTransfer(String userID){
+        try {
+            this.open();
+            Log.d("DB"," OPEND");
+        }
+        catch (Exception e){
+            Log.d("DB",e.getMessage());
+            return;
+        }
+
+        db.delete(DatabaseSchema.Transfers.TABLE_NAME, DatabaseSchema.Transfers.COLUMN_NAME_RECEIVER+"=?", new String[]{userID});
     }
 
     public long countUserSaves(String userID){

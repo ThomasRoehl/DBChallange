@@ -136,8 +136,8 @@ public class FoundConnectionsActivity extends AppCompatActivity {
             endloc = intent.getExtras().getString("DEST");
             start.setText(startloc);
             dest.setText(endloc);
-            if (startloc.equals("Frankfurt (Main) Hbf (tief)")) start.setText("Frankfurt Hbf (tief)");
-            if (endloc.equals("Frankfurt (Main) Hbf (tief)")) dest.setText("Frankfurt Hbf (tief)");
+//            if (startloc.equals("Frankfurt (Main) Hbf (tief)")) start.setText("Frankfurt Hbf (tief)");
+//            if (endloc.equals("Frankfurt (Main) Hbf (tief)")) dest.setText("Frankfurt Hbf (tief)");
             date = intent.getExtras().getString("DATE");
             time = intent.getExtras().getString("TIME");
             Log.d("TAG", "DATE\t"+transformDate(date));

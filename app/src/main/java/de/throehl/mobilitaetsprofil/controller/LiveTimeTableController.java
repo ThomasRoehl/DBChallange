@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -22,6 +23,7 @@ import java.util.concurrent.ExecutionException;
 import de.throehl.mobilitaetsprofil.model.dbEntries.HandlerThread;
 import de.throehl.mobilitaetsprofil.model.dbEntries.LiveInformation;
 import de.throehl.mobilitaetsprofil.model.dbEntries.Route;
+import de.throehl.mobilitaetsprofil.view.ConnectionSearchActivity;
 
 
 /**
@@ -35,6 +37,7 @@ public class LiveTimeTableController {
     //http://iris.noncd.db.de/wbt/js/index.html?bhf=FMH
 
     private Handler infoHandler;
+
     private Runnable runnable;
     public final String TAG = "LTTC";
     private String date;
@@ -227,6 +230,7 @@ public class LiveTimeTableController {
             if (r.getRouteAfter().contains(dest)){
                 tmp.add(r);
             }
+            if (r.getRouteAfter().contains(dest.replace(" ", ""))) tmp.add(r);
         }
 
         Log.d(TAG, "finding same done!");

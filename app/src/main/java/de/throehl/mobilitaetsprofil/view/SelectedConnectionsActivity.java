@@ -23,6 +23,7 @@ import de.throehl.mobilitaetsprofil.R;
 import de.throehl.mobilitaetsprofil.controller.ControllerFactory;
 import de.throehl.mobilitaetsprofil.controller.ViewControllerFactory;
 import de.throehl.mobilitaetsprofil.model.dbEntries.ConnectionInformation;
+import de.throehl.mobilitaetsprofil.model.dbEntries.LiveInformation;
 import de.throehl.mobilitaetsprofil.model.dbEntries.Route;
 import de.throehl.mobilitaetsprofil.model.dbEntries.Stop;
 import de.throehl.mobilitaetsprofil.model.dbEntries.UserSaves;
@@ -80,30 +81,56 @@ public class SelectedConnectionsActivity extends AppCompatActivity {
                     ControllerFactory.getDbController().insertUserSave(new UserSaves(ControllerFactory.getID(), ""+(routeID+1)));
                     int id = ControllerFactory.getDbController().getRouteID(start, time1);
                     intent.putExtra("ADDED", id);
+                    addDelay((routeID + 1)+"", time1);
                 }
                 intent.putExtra("ACTIVITY", className);
                 startActivity(intent);
             }
         });
-        new Thread(new Runnable() {
-            public void run(){
-                try {
-                    synchronized (this) {
-                        wait(5000);
+        Intent i = getIntent();
+        if (i.getExtras() != null){
+            if (i.getExtras().containsKey("ACTIVITY")){
+                if (!i.getExtras().getString("ACTIVITY").equals("SHOW")){
+                    new Thread(new Runnable() {
+                        public void run(){
+                            try {
+                                synchronized (this) {
+                                    wait(5000);
 
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                extractPath();
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            extractPath();
+                                        }
+                                    });
+
+                                }
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
                             }
-                        });
-
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                        }
+                    }).start();
+                }
+                else{
+                    getPaths();
                 }
             }
-        }).start();
+        }
+
+    }
+
+    private void addDelay(String route, String dest){
+        ControllerFactory.getDbController().insertLiveInformation(new LiveInformation(route, route, "1 Minute Verspaetung", dest, "5"));
+    }
+
+    private void getPaths(){
+        time2E.setText(stops.get(stops.size()-1).getDEPARTURE());
+        stops.remove(0);
+        route = "";
+        for (Stop s: stops){
+            route += s.getDEPARTURE() +  "     ->     " + s.getNAME() +"\n";
+        }
+        pathE.setText(route);
     }
 
     private void extractPath(){
@@ -160,15 +187,34 @@ public class SelectedConnectionsActivity extends AppCompatActivity {
             if (i.getExtras().containsKey("ID")){
                 trainID =  i.getExtras().getString("ID");
             }
+            if (i.getExtras().containsKey("STATIONS")){
+                stops = (ArrayList<Stop>) i.getExtras().get("STATIONS");
+            }
         }
     }
 
     @Override
     public void onBackPressed(){
-        Intent intent = new Intent(getApplicationContext(), FoundConnectionsActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
-        ViewControllerFactory.closeActivity(className);
+        if (getIntent().getExtras().containsKey("ACTIVITY")){
+            if (getIntent().getExtras().getString("ACTIVITY").equals("SHOW")){
+                Intent intent = new Intent(ControllerFactory.getAppContext(), ConnectionSearchActivity.class);
+                intent.putExtra("VIEW", 2);
+                intent.putExtra("ACTIVITY", className);
+                startActivity(intent);
+            }
+            else{
+                Intent intent = new Intent(getApplicationContext(), FoundConnectionsActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(intent);
+                ViewControllerFactory.closeActivity(className);
+            }
+        }
+        else{
+            Intent intent = new Intent(getApplicationContext(), FoundConnectionsActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
+            ViewControllerFactory.closeActivity(className);
+        }
     }
 
 

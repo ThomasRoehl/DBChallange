@@ -1,10 +1,12 @@
 package de.throehl.mobilitaetsprofil.model.dbEntries;
 
+import java.io.Serializable;
+
 /**
  * Created by thomas on 15.01.17.
  */
 
-public class Stop {
+public class Stop implements Serializable{
     private String NAME;
     private String DEPARTURE;
     private String ARRIVAL;

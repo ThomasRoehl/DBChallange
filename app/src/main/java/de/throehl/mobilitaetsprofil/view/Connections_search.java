@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -205,6 +206,7 @@ public class Connections_search extends Fragment{
         Log.d("TAG", pYear+"");
 
         updateDisplay();
+
         return rootView;
 
 
