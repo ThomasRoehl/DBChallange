@@ -76,6 +76,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.throehl.mobilitaetsprofil.view.FoundConnectionsActivity" />
         </activity>
+        <activity android:name=".view.ListViewActivity"></activity>
+        <activity android:name=".view.CalenderActivity"></activity>
 
     </application>
 

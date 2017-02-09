@@ -3,6 +3,10 @@ package de.throehl.mobilitaetsprofil.controller;
 import android.content.Context;
 import android.util.Log;
 
+import java.util.ArrayList;
+
+import de.throehl.mobilitaetsprofil.view.CalendarCollection;
+
 import static android.R.attr.id;
 
 /**
@@ -28,8 +32,11 @@ public abstract class ControllerFactory {
         JSON_PARSER = new JsonParser(APPLICATION_CONTEXT);
         XML_PARSER = new XMLParser(APPLICATION_CONTEXT);
         TT_CONTROLLER = new LiveTimeTableController();
+        CalendarCollection.date_collection_arr=new ArrayList<CalendarCollection>();
         FileLoader.initFileLoader(APPLICATION_CONTEXT);
     }
+
+
 
     public static void setID(String id){
         USERID = id;
