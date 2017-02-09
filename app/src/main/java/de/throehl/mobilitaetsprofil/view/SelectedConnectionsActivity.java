@@ -22,6 +22,7 @@ import java.util.ResourceBundle;
 import de.throehl.mobilitaetsprofil.R;
 import de.throehl.mobilitaetsprofil.controller.ControllerFactory;
 import de.throehl.mobilitaetsprofil.controller.ViewControllerFactory;
+import de.throehl.mobilitaetsprofil.model.CalendarCollection;
 import de.throehl.mobilitaetsprofil.model.dbEntries.ConnectionInformation;
 import de.throehl.mobilitaetsprofil.model.dbEntries.LiveInformation;
 import de.throehl.mobilitaetsprofil.model.dbEntries.Route;
@@ -82,6 +83,10 @@ public class SelectedConnectionsActivity extends AppCompatActivity {
                     int id = ControllerFactory.getDbController().getRouteID(start, time1);
                     intent.putExtra("ADDED", id);
                     addDelay((routeID + 1)+"", time1);
+
+                    // Add Calendar entry
+                    String msg = trainID + "\n" + time1 + "\t" + start + "\n" + time2 + "\t" + dest;
+                    CalendarCollection.date_collection_arr.add(new CalendarCollection(date, msg));
                 }
                 intent.putExtra("ACTIVITY", className);
                 startActivity(intent);

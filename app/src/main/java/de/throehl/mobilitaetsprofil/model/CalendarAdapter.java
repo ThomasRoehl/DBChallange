@@ -1,4 +1,4 @@
-package de.throehl.mobilitaetsprofil.view;
+package de.throehl.mobilitaetsprofil.model;
 
 /**
  * Created by tetiana on 08.02.17.
@@ -16,6 +16,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import de.throehl.mobilitaetsprofil.R;
+import de.throehl.mobilitaetsprofil.controller.ControllerFactory;
+import de.throehl.mobilitaetsprofil.controller.ViewControllerFactory;
+import de.throehl.mobilitaetsprofil.view.ConnectionSearchActivity;
 
 public class CalendarAdapter extends BaseAdapter {
     private Context context;
@@ -60,7 +64,7 @@ public class CalendarAdapter extends BaseAdapter {
         this.context = context;
         month.set(GregorianCalendar.DAY_OF_MONTH, 1);
         this.items = new ArrayList<String>();
-        df = new SimpleDateFormat("yyyy-MM-dd", Locale.GERMAN);
+        df = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMAN);
         curentDateString = df.format(selectedDate.getTime());
         refreshDays();
 
@@ -89,6 +93,7 @@ public class CalendarAdapter extends BaseAdapter {
 
     // create a new view for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
+        Log.d("CalendarAdapter", "getView\t" + this.date_collection_arr.size());
         View v = convertView;
         TextView dayView;
         if (convertView == null) { // if it's not recycled, initialize some
@@ -101,10 +106,11 @@ public class CalendarAdapter extends BaseAdapter {
 
 
         dayView = (TextView) v.findViewById(R.id.date);
-        String[] separatedTime = day_string.get(position).split("-");
+        Log.d("CalendarAdapter", day_string.get(position));
+        String[] separatedTime = day_string.get(position).split("\\.");
 
 
-        String gridvalue = separatedTime[2].replaceFirst("^0*", "");
+        String gridvalue = separatedTime[0].replaceFirst("^0*", "");
         if ((Integer.parseInt(gridvalue) > 1) && (position < firstDay)) {
             dayView.setTextColor(Color.GRAY);
             dayView.setClickable(false);
@@ -214,12 +220,12 @@ public class CalendarAdapter extends BaseAdapter {
 
 
         }
+        this.notifyDataSetChanged();
     }
 
     private int getMaxP() {
         int maxP;
-        if (month.get(GregorianCalendar.MONTH) == month
-                .getActualMinimum(GregorianCalendar.MONTH)) {
+        if (month.get(GregorianCalendar.MONTH) == month.getActualMinimum(GregorianCalendar.MONTH)) {
             pmonth.set((month.get(GregorianCalendar.YEAR) - 1),
                     month.getActualMaximum(GregorianCalendar.MONTH), 1);
         } else {
@@ -233,13 +239,14 @@ public class CalendarAdapter extends BaseAdapter {
 
 
     public void setEventView(View v,int pos,TextView txt){
-
+        Log.d("CalendarAdapter", "setEventView");
         int len=CalendarCollection.date_collection_arr.size();
         for (int i = 0; i < len; i++) {
             CalendarCollection cal_obj=CalendarCollection.date_collection_arr.get(i);
             String date=cal_obj.date;
             int len1=day_string.size();
             if (len1>pos) {
+                Log.d("CalendarAdapter", date + "\t" + day_string.get(pos));
                 if (day_string.get(pos).equals(date)) {
                     //v.setBackgroundColor(Color.parseColor("#343434"));
                     //v.setBackgroundColor(Color.YELLOW);
@@ -263,7 +270,7 @@ public class CalendarAdapter extends BaseAdapter {
             if (date.equals(event_date)) {
                 //TODO: Das ist die Stelle, wo Ivent Angezeigt wird
                 //Toast.makeText(context, "You have event on this date: "+event_date, Toast.LENGTH_LONG).show();
-                new AlertDialog.Builder(context)
+                new AlertDialog.Builder(ViewControllerFactory.getActivity(ConnectionSearchActivity.className))
                         //.setIcon(android.R.drawable.ic_dialog_alert)
                         .setTitle("Date: "+event_date)
                         .setMessage("Event: "+event_message)

@@ -16,6 +16,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import de.throehl.mobilitaetsprofil.R;
+import de.throehl.mobilitaetsprofil.model.CalendarAdapter;
+import de.throehl.mobilitaetsprofil.model.CalendarCollection;
 
 public class CalenderActivity extends Activity {
     public GregorianCalendar cal_month, cal_month_copy;
@@ -29,7 +31,7 @@ public class CalenderActivity extends Activity {
 
         cal_month = (GregorianCalendar) GregorianCalendar.getInstance();
         cal_month_copy = (GregorianCalendar) cal_month.clone();
-        cal_adapter = new CalendarAdapter(this, cal_month,CalendarCollection.date_collection_arr);
+        cal_adapter = new CalendarAdapter(this, cal_month, CalendarCollection.date_collection_arr);
 
         tv_month = (TextView) findViewById(R.id.tv_month);
         tv_month.setText(android.text.format.DateFormat.format("MMMM yyyy", cal_month));
@@ -45,7 +47,7 @@ public class CalenderActivity extends Activity {
             }
         });
 
-        ImageButton next = (ImageButton) findViewById(R.id.Ib_next);
+        ImageButton next = (ImageButton) findViewById(R.id.id_next);
         next.setOnClickListener(new OnClickListener() {
 
             @Override

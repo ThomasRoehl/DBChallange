@@ -37,24 +37,6 @@ public class Your_connections extends Fragment{
 
         Log.d("CSA", "onCreate YourConnections");
 
-
-
-//        String[] your_connections_list = new String[] {
-//                "Mo. 23.02.2017\n S9 Richtung Wiesbadeb\n -> 20:00 Mühlheim am Main \n -> 20:26 Konstabler Wache",
-//                "Mo. 24.02.2017\n S9 Richtung Wiesbadeb\n -> 20:00 Mühlheim am Main \n -> 20:26 Konstabler Wache",
-//                "Mo. 25.02.2017\n S9 Richtung Wiesbadeb\n -> 20:00 Mühlheim am Main \n -> 20:26 Konstabler Wache",
-//                "Mo. 26.02.2017\n S9 Richtung Wiesbadeb\n -> 20:00 Mühlheim am Main \n -> 20:26 Konstabler Wache",
-//                "Mo. 27.02.2017\n S9 Richtung Wiesbadeb\n -> 20:00 Mühlheim am Main \n -> 20:26 Konstabler Wache",
-//                "Mo. 23.02.2017\n S9 Richtung Wiesbadeb\n -> 20:00 Mühlheim am Main \n -> 20:26 Konstabler Wache"};
-//
-//        String[] itteration_list = new String[] {
-//                "aus","aus","aus","aus","aus","aus","aus","aus","aus","aus","aus","aus","aus"
-//           };
-//
-//        String[] dalay_list = new String[] {
-//                "aus","aus","aus","aus","aus","aus","aus","aus","aus","aus","aus","aus","aus",
-//        };
-
         connections = new ArrayList<String>();
         alarm = new ArrayList<String>();
         repeat = new ArrayList<String>();
@@ -73,18 +55,31 @@ public class Your_connections extends Fragment{
     public void initEntries(){
         Log.d("CSA", "initEntries");
         ArrayList<String> routes = ControllerFactory.getDbController().getUserSaves(ControllerFactory.getID());
-        connections.clear();
-        alarm.clear();
-        repeat.clear();
+
+
+
+//        connections.clear();
+//        alarm.clear();
+//        repeat.clear();
+
         for(String s: routes){
             Log.d("CSA", s);
             try{
                 int i = Integer.parseInt(s);
                 ConnectionInformation con = ControllerFactory.getDbController().getTravelPlan(i);
-                String entry = con.getStations().get(0).getDATE() + "\n" + con.getTRAINTYPE() + "\n" + con.getStations().get(0).getDEPARTURE() + "\n" + con.getStations().get(0).getNAME() + "\n" + con.getStations().get(con.getStations().size()-1).getDEPARTURE() + "\n" + con.getStations().get(con.getStations().size()-1).getNAME();
-                connections.add(entry);
-                alarm.add("aus");
-                repeat.add("an");
+                String entry = con.getStations().get(0).getDATE() + "\n" + con.getTRAINTYPE() + "\n" + con.getStations().get(0).getDEPARTURE() + "\t" + con.getStations().get(0).getNAME() + "\n" + con.getStations().get(con.getStations().size()-1).getDEPARTURE() + "\t" + con.getStations().get(con.getStations().size()-1).getNAME();
+                boolean found = false;
+                for (String c: connections){
+                    if (c.equals(entry)){
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    connections.add(entry);
+                    alarm.add("aus");
+                    repeat.add("aus");
+                }
                 ids.add(0);
             }
             catch (Exception e){

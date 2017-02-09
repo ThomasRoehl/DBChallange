@@ -22,8 +22,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
-import de.throehl.mobilitaetsprofil.view.MainActivity;
-
 /**
  * Created by thomas on 22.01.17.
  */

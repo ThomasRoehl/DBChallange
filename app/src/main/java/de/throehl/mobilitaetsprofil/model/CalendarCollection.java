@@ -1,4 +1,4 @@
-package de.throehl.mobilitaetsprofil.view;
+package de.throehl.mobilitaetsprofil.model;
 
 /**
  * Created by tetiana on 08.02.17.
@@ -17,6 +17,11 @@ public class CalendarCollection {
         this.date=date;
         this.connections_info =event_message;
 
+    }
+
+    @Override
+    public String toString(){
+        return "Date:\t"+date+"\nMessage:\t"+connections_info;
     }
 
 }

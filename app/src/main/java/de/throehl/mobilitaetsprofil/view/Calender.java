@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.provider.CalendarContract;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import de.throehl.mobilitaetsprofil.R;
+import de.throehl.mobilitaetsprofil.model.CalendarAdapter;
+import de.throehl.mobilitaetsprofil.model.CalendarCollection;
 
 
 public class Calender extends Fragment{
@@ -53,7 +56,7 @@ public class Calender extends Fragment{
             }
         });
 
-        ImageButton next = (ImageButton) rootView.findViewById(R.id.Ib_next);
+        ImageButton next = (ImageButton) rootView.findViewById(R.id.id_next);
         next.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -75,8 +78,8 @@ public class Calender extends Fragment{
                 String selectedGridDate = CalendarAdapter.day_string
                         .get(position);
 
-                String[] separatedTime = selectedGridDate.split("-");
-                String gridvalueString = separatedTime[2].replaceFirst("^0*","");
+                String[] separatedTime = selectedGridDate.split("\\.");
+                String gridvalueString = separatedTime[0].replaceFirst("^0*","");
                 int gridvalue = Integer.parseInt(gridvalueString);
 
                 if ((gridvalue > 10) && (position < 8)) {
@@ -122,14 +125,13 @@ public class Calender extends Fragment{
 
         cal_month = (GregorianCalendar) GregorianCalendar.getInstance();
         cal_month_copy = (GregorianCalendar) cal_month.clone();
-        cal_adapter = new CalendarAdapter(context, cal_month,CalendarCollection.date_collection_arr);
+        cal_adapter = new CalendarAdapter(context, cal_month, CalendarCollection.date_collection_arr);
 
     }
 
 
     protected void setNextMonth() {
-        if (cal_month.get(GregorianCalendar.MONTH) == cal_month
-                .getActualMaximum(GregorianCalendar.MONTH)) {
+        if (cal_month.get(GregorianCalendar.MONTH) == cal_month.getActualMaximum(GregorianCalendar.MONTH)) {
             cal_month.set((cal_month.get(GregorianCalendar.YEAR) + 1),
                     cal_month.getActualMinimum(GregorianCalendar.MONTH), 1);
         } else {
@@ -140,8 +142,7 @@ public class Calender extends Fragment{
     }
 
     protected void setPreviousMonth() {
-        if (cal_month.get(GregorianCalendar.MONTH) == cal_month
-                .getActualMinimum(GregorianCalendar.MONTH)) {
+        if (cal_month.get(GregorianCalendar.MONTH) == cal_month.getActualMinimum(GregorianCalendar.MONTH)) {
             cal_month.set((cal_month.get(GregorianCalendar.YEAR) - 1),
                     cal_month.getActualMaximum(GregorianCalendar.MONTH), 1);
         } else {
@@ -178,5 +179,12 @@ public class Calender extends Fragment{
         intent.putExtra(CalendarContract.Events.RRULE, "FREQ=YEARLY");
 
         startActivity(intent);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        Log.d("CalendarActivity", "onResume\n"+CalendarCollection.date_collection_arr);
+        refreshCalendar();
     }
 }

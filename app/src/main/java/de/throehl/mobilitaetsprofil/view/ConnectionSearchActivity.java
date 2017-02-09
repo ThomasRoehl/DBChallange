@@ -42,6 +42,7 @@ public class ConnectionSearchActivity extends AppCompatActivity {
     private String dest = "";
     private final String TAG = "CSA";
     private Connections_search tab1;
+    private Calender tab2;
     private Your_connections tab3;
     public static String className;
 
@@ -69,6 +70,28 @@ public class ConnectionSearchActivity extends AppCompatActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == 1){
+                    Log.d(TAG, "pageSelect Calendar\t");
+                    tab2.refreshCalendar();
+                }
+                else if (position == 2){
+                    tab3.initEntries();
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -221,14 +244,16 @@ public class ConnectionSearchActivity extends AppCompatActivity {
             switch (position) {
                 case 0:
                     tab1 = Connections_search.newInstance(getApplicationContext());
-                    Log.d(TAG, "newInstance\t"+start+"\t"+dest);
+                    Log.d(TAG, "newInstance Search\t"+start+"\t"+dest);
                     return tab1;
                 case 1:
-                    Calender tab2 = Calender.newInstance(getApplicationContext());
+                    tab2 = Calender.newInstance(getApplicationContext());
+                    Log.d(TAG, "newInstance Calendar\t"+start+"\t"+dest);
                     return tab2;
                 case 2:
                     if (tab3 == null)
                         tab3 = new Your_connections();
+                    Log.d(TAG, "newInstance List\t"+start+"\t"+dest);
                     return tab3;
                 default:
                     return null;

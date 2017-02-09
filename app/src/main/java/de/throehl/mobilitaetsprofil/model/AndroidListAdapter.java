@@ -1,4 +1,4 @@
-package de.throehl.mobilitaetsprofil.view;
+package de.throehl.mobilitaetsprofil.model;
 
 /**
  * Created by tetiana on 08.02.17.

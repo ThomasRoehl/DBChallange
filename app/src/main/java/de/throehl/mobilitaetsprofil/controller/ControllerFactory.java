@@ -5,9 +5,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import de.throehl.mobilitaetsprofil.view.CalendarCollection;
-
-import static android.R.attr.id;
+import de.throehl.mobilitaetsprofil.model.CalendarCollection;
 
 /**
  * Created by thomas on 19.01.17.
