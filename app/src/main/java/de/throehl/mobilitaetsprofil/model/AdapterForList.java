@@ -83,6 +83,7 @@ public class AdapterForList extends ArrayAdapter<String> {
 
 
         row2.setText(iteration_list.get(position));
+        if (row2.getText().equals("an")) row2.setTextColor(Color.argb(255,14,100,27));
         row2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,6 +101,7 @@ public class AdapterForList extends ArrayAdapter<String> {
         });
 
         row3.setText(delay_list.get(position));
+        if (row3.getText().equals("an")) row3.setTextColor(Color.argb(255,14,100,27));
         row3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,9 +111,11 @@ public class AdapterForList extends ArrayAdapter<String> {
                     String[] s = conections_list.get(position).split("\n");
                     int id  = ControllerFactory.getDbController().getRouteID(s[3].trim(), s[2].trim());
                     String date = s[0].trim();
+                    Log.d("AdapterList", date);
                     String time = s[2];
-                    String nDate = date.substring(8)+date.substring(0,2)+date.substring(3,4);
+                    String nDate = date.substring(8)+date.substring(3,5)+date.substring(0,2);
                     String nTime = time.replace("\\.", "").replace(":", "");
+                    Log.d("AdapterList", nDate+"\t"+nTime);
 
 //                    ControllerFactory.getTtController().startAutoCheck(s[3].trim(), s[0].trim(), s[2].trim(), ""+id);
                     ControllerFactory.getTtController().startAutoCheck(s[3].trim(), nDate, nTime, ""+id);

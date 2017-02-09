@@ -273,7 +273,9 @@ public class LiveTimeTableController {
     private boolean checkTimeRange(String cT, String nT){
         try {
             int a = Integer.parseInt(cT);
+            Log.d(TAG, "TimeRange current:\t"+a);
             int b = Integer.parseInt(nT);
+            Log.d(TAG, "TimeRange current:\t"+b);
             int h = Integer.parseInt(cT.substring(6,8));
 
             if (a > b) return false;
@@ -298,7 +300,13 @@ public class LiveTimeTableController {
             h.setRunnable(new Runnable() {
                 @Override
                 public void run() {
-                    Log.d(TAG, "" + h.getStationID() + "\t" + h.getTrainID() + "\t" + h.getDate()+h.getTime());
+//                    Log.d(TAG, "" + h.getStationID() + "\t" + h.getTrainID() + "\t" + h.getDate()+h.getTime());
+                    ArrayList<LiveInformation> infos = ControllerFactory.getDbController().getLiveInformation(h.getTrainID());
+                    String msg = "";
+                    for (LiveInformation l: infos){
+                        msg += l.getStationID() + " verspaetet um " + l.getDescription();
+                    }
+                    Toast.makeText(ControllerFactory.getAppContext(), msg, Toast.LENGTH_LONG).show();
                 }
             });
             h.setTurnedOn(true);
