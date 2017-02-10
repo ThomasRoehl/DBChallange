@@ -65,7 +65,7 @@
                 android:layout_height="45dp" >
 
                 <ImageButton
-                    android:id="@+id/Ib_next"
+                    android:id="@+id/id_next"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_margin="2dp"

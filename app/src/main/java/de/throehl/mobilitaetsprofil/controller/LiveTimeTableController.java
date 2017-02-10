@@ -10,8 +10,6 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -20,10 +18,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
-import de.throehl.mobilitaetsprofil.model.dbEntries.HandlerThread;
+import de.throehl.mobilitaetsprofil.model.HandlerThread;
 import de.throehl.mobilitaetsprofil.model.dbEntries.LiveInformation;
 import de.throehl.mobilitaetsprofil.model.dbEntries.Route;
-import de.throehl.mobilitaetsprofil.view.ConnectionSearchActivity;
 
 
 /**
@@ -64,8 +61,14 @@ public class LiveTimeTableController {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmm");
                 String currentDateandTime = sdf.format(new Date());
 //                Log.d(TAG, currentDateandTime + "\t" + h.getDate()+h.getTime());
-                if (checkTimeRange(currentDateandTime, h.getDate()+h.getTime()))
+                if (checkTimeRange(currentDateandTime, h.getDate()+h.getTime())){
+                    Log.d(TAG, "TimeRange: True");
                     h.run();
+                }
+                else{
+                    Log.d(TAG, "TimeRange: False");
+                }
+
             }
         }
         infoHandler.postDelayed(runnable, 10000);
@@ -275,8 +278,9 @@ public class LiveTimeTableController {
             int a = Integer.parseInt(cT);
             Log.d(TAG, "TimeRange current:\t"+a);
             int b = Integer.parseInt(nT);
-            Log.d(TAG, "TimeRange current:\t"+b);
+            Log.d(TAG, "TimeRange new:\t"+b);
             int h = Integer.parseInt(cT.substring(6,8));
+            Log.d(TAG, "TimeRange h:\t"+h);
 
             if (a > b) return false;
             if (h + 1 == 24) a = a - 2300 + 10000;
@@ -301,12 +305,14 @@ public class LiveTimeTableController {
                 @Override
                 public void run() {
 //                    Log.d(TAG, "" + h.getStationID() + "\t" + h.getTrainID() + "\t" + h.getDate()+h.getTime());
+                    Log.d(TAG, h.getTrainID());
                     ArrayList<LiveInformation> infos = ControllerFactory.getDbController().getLiveInformation(h.getTrainID());
                     String msg = "";
                     for (LiveInformation l: infos){
-                        msg += l.getStationID() + " verspaetet um " + l.getDescription();
+                        msg += h.getStationID() + "\nheute ca. " + l.getDescription();
                     }
-                    Toast.makeText(ControllerFactory.getAppContext(), msg, Toast.LENGTH_LONG).show();
+                    if (!infos.isEmpty())
+                        Toast.makeText(ControllerFactory.getAppContext(), msg, Toast.LENGTH_LONG).show();
                 }
             });
             h.setTurnedOn(true);
@@ -326,7 +332,7 @@ public class LiveTimeTableController {
         if (autoChecks.contains(h)){
 //            Log.d(TAG, "Contains");
             autoChecks.get(autoChecks.indexOf(h)).setTurnedOn(false);
-//            Log.d(TAG, "Still turned on\t"+autoChecks.get(autoChecks.indexOf(h)).isTurnedOn());
+            Log.d(TAG, "Still turned on\t"+autoChecks.get(autoChecks.indexOf(h)).isTurnedOn());
         }
     }
 

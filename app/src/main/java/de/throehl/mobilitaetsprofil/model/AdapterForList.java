@@ -131,24 +131,25 @@ public class AdapterForList extends ArrayAdapter<String> {
                     row3.setTextColor(Color.argb(255,14,100,27));
                     String[] s = conections_list.get(position).split("\n");
                     Log.d("AdapterList", s[2].split("\t")[0].trim());
-                    int id  = ControllerFactory.getDbController().getRouteID(s[3].trim(), s[2].split("\t")[0].trim());
+                    int id  = ControllerFactory.getDbController().getRouteID(s[2].split("\t")[1].trim(), s[2].split("\t")[0].trim());
                     String date = s[0].trim();
                     Log.d("AdapterList", date);
                     String time = s[2].split("\t")[0];
                     String nDate = date.substring(8)+date.substring(3,5)+date.substring(0,2);
-                    String nTime = time.replace("\\.", "").replace(":", "");
+                    Log.d("AdapterList", time);
+                    String nTime = time.replace(".", "").replace(":", "");
                     Log.d("AdapterList", nDate+"\t"+nTime);
 
 //                    ControllerFactory.getTtController().startAutoCheck(s[3].trim(), s[0].trim(), s[2].trim(), ""+id);
-                    ControllerFactory.getTtController().startAutoCheck(s[3].trim(), nDate, nTime, ""+id);
+                    ControllerFactory.getTtController().startAutoCheck(conections_list.get(position), nDate, nTime, ""+id);
                 }
 
                 else {
                     delay_list.set(position, "aus");
                     row3.setTextColor(Color.argb(255, 108,3,22));
                     String[] s = conections_list.get(position).split("\n");
-                    int id  = ControllerFactory.getDbController().getRouteID(s[3].trim(), s[2].trim());
-                    ControllerFactory.getTtController().stopAutoCheck(s[3].trim(), ""+id);
+                    int id  = ControllerFactory.getDbController().getRouteID(s[2].split("\t")[1].trim(), s[2].split("\t")[0].trim());
+                    ControllerFactory.getTtController().stopAutoCheck(conections_list.get(position), ""+id);
                 }
                 a.notifyDataSetChanged();
             }

@@ -1,7 +1,6 @@
-package de.throehl.mobilitaetsprofil.model.dbEntries;
+package de.throehl.mobilitaetsprofil.model;
 
 import android.os.Handler;
-import android.util.Log;
 
 /**
  * Created by thomas on 28.01.17.

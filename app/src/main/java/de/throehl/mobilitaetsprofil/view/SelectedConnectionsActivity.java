@@ -125,7 +125,7 @@ public class SelectedConnectionsActivity extends AppCompatActivity {
     }
 
     private void addDelay(String route, String dest){
-        ControllerFactory.getDbController().insertLiveInformation(new LiveInformation(route, route, "1 Minute Verspaetung", dest, "5"));
+        ControllerFactory.getDbController().insertLiveInformation(new LiveInformation(route, route, "5 Minute Verspaetung", dest, "5"));
     }
 
     private void getPaths(){
