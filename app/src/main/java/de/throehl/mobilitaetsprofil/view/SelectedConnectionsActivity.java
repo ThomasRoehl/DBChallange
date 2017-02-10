@@ -45,8 +45,9 @@ public class SelectedConnectionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_selected_connections);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.app_name);
+        getSupportActionBar().setLogo(R.drawable.dblogo5);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         stops = new ArrayList<Stop>();
         startE = (TextView) findViewById(R.id.start);

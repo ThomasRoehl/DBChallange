@@ -38,8 +38,9 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setLogo(R.drawable.dblogo5);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ViewControllerFactory.addActivity(className, this);
 

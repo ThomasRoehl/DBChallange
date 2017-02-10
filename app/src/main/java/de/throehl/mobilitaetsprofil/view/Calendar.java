@@ -18,7 +18,6 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import de.throehl.mobilitaetsprofil.R;
@@ -26,10 +25,10 @@ import de.throehl.mobilitaetsprofil.model.CalendarAdapter;
 import de.throehl.mobilitaetsprofil.model.CalendarCollection;
 
 
-public class Calender extends Fragment{
-    public GregorianCalendar cal_month, cal_month_copy;
-    private CalendarAdapter cal_adapter;
-    private TextView tv_month;
+public class Calendar extends Fragment{
+    public GregorianCalendar calendarMonth, calendarMonthCopy;
+    private CalendarAdapter calendarAdapter;
+    private TextView tvMonth;
     Context context;
     //final View rootView = inflater.inflate(R.layout.your_connections, container, false);
 
@@ -42,8 +41,8 @@ public class Calender extends Fragment{
 
 
 
-        tv_month = (TextView) rootView.findViewById(R.id.tv_month);
-        tv_month.setText(android.text.format.DateFormat.format("MMMM yyyy", cal_month));
+        tvMonth = (TextView) rootView.findViewById(R.id.id_tv_month);
+        tvMonth.setText(android.text.format.DateFormat.format("MMMM yyyy", calendarMonth));
 
         ImageButton previous = (ImageButton) rootView.findViewById(R.id.id_month_back);
 
@@ -67,8 +66,8 @@ public class Calender extends Fragment{
             }
         });
 
-        GridView gridview = (GridView) rootView.findViewById(R.id.gv_calendar);
-        gridview.setAdapter(cal_adapter);
+        GridView gridview = (GridView) rootView.findViewById(R.id.id_gv_calendar);
+        gridview.setAdapter(calendarAdapter);
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> parent, View v,
@@ -112,8 +111,8 @@ public class Calender extends Fragment{
         return rootView;
     }
 
-    public static Calender newInstance(Context activity_context){
-        Calender calender = new Calender();
+    public static Calendar newInstance(Context activity_context){
+        Calendar calender = new Calendar();
         calender.context = activity_context; //for new activity
         return calender;
     }
@@ -123,39 +122,39 @@ public class Calender extends Fragment{
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_calender);
 
-        cal_month = (GregorianCalendar) GregorianCalendar.getInstance();
-        cal_month_copy = (GregorianCalendar) cal_month.clone();
-        cal_adapter = new CalendarAdapter(context, cal_month, CalendarCollection.date_collection_arr);
+        calendarMonth = (GregorianCalendar) GregorianCalendar.getInstance();
+        calendarMonthCopy = (GregorianCalendar) calendarMonth.clone();
+        calendarAdapter = new CalendarAdapter(context, calendarMonth, CalendarCollection.date_collection_arr);
 
     }
 
 
     protected void setNextMonth() {
-        if (cal_month.get(GregorianCalendar.MONTH) == cal_month.getActualMaximum(GregorianCalendar.MONTH)) {
-            cal_month.set((cal_month.get(GregorianCalendar.YEAR) + 1),
-                    cal_month.getActualMinimum(GregorianCalendar.MONTH), 1);
+        if (calendarMonth.get(GregorianCalendar.MONTH) == calendarMonth.getActualMaximum(GregorianCalendar.MONTH)) {
+            calendarMonth.set((calendarMonth.get(GregorianCalendar.YEAR) + 1),
+                    calendarMonth.getActualMinimum(GregorianCalendar.MONTH), 1);
         } else {
-            cal_month.set(GregorianCalendar.MONTH,
-                    cal_month.get(GregorianCalendar.MONTH) + 1);
+            calendarMonth.set(GregorianCalendar.MONTH,
+                    calendarMonth.get(GregorianCalendar.MONTH) + 1);
         }
 
     }
 
     protected void setPreviousMonth() {
-        if (cal_month.get(GregorianCalendar.MONTH) == cal_month.getActualMinimum(GregorianCalendar.MONTH)) {
-            cal_month.set((cal_month.get(GregorianCalendar.YEAR) - 1),
-                    cal_month.getActualMaximum(GregorianCalendar.MONTH), 1);
+        if (calendarMonth.get(GregorianCalendar.MONTH) == calendarMonth.getActualMinimum(GregorianCalendar.MONTH)) {
+            calendarMonth.set((calendarMonth.get(GregorianCalendar.YEAR) - 1),
+                    calendarMonth.getActualMaximum(GregorianCalendar.MONTH), 1);
         } else {
-            cal_month.set(GregorianCalendar.MONTH,
-                    cal_month.get(GregorianCalendar.MONTH) - 1);
+            calendarMonth.set(GregorianCalendar.MONTH,
+                    calendarMonth.get(GregorianCalendar.MONTH) - 1);
         }
 
     }
 
     public void refreshCalendar() {
-        cal_adapter.refreshDays();
-        cal_adapter.notifyDataSetChanged();
-        tv_month.setText(android.text.format.DateFormat.format("MMMM yyyy", cal_month));
+        calendarAdapter.refreshDays();
+        calendarAdapter.notifyDataSetChanged();
+        tvMonth.setText(android.text.format.DateFormat.format("MMMM yyyy", calendarMonth));
     }
 
 
@@ -165,7 +164,7 @@ public class Calender extends Fragment{
         Intent intent = new Intent(Intent.ACTION_INSERT);
         intent.setType("vnd.android.cursor.item/event");
 
-        Calendar cal = Calendar.getInstance();
+        java.util.Calendar cal = java.util.Calendar.getInstance();
         long startTime = cal.getTimeInMillis();
         long endTime = cal.getTimeInMillis()  + 60 * 60 * 1000;
 

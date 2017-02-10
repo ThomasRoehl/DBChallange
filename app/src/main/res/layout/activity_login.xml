@@ -11,18 +11,22 @@
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:gravity="left">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/red1_2"
-            android:titleTextColor="@color/colorWhite"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:foregroundGravity="left">
+
+
 
         </android.support.v7.widget.Toolbar>
 
@@ -32,3 +36,23 @@
 
 
 </android.support.design.widget.CoordinatorLayout>
+
+<!--                android:contentDescription="@string/logo"
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:titleTextColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_gravity="left" />
+
+                            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:src="@drawable/dblogo3"
+                android:scaleX="0.7"
+                android:scaleY="0.7"/>
+-->

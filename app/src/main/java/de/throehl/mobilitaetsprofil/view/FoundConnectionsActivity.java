@@ -42,6 +42,7 @@ public class FoundConnectionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_found_connections);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setLogo(R.drawable.dblogo5);
 
         ViewControllerFactory.addActivity(className, this);
 

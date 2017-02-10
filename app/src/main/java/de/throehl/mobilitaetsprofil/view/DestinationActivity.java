@@ -36,6 +36,8 @@ public class DestinationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_destination);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setLogo(R.drawable.dblogo5);
+
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

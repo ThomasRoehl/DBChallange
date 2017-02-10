@@ -16,7 +16,7 @@
         android:background="@color/colorWhite">
 
         <LinearLayout
-            android:id="@+id/header"
+            android:id="@+id/id_ll_header"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -47,7 +47,7 @@
                 android:layout_weight="1" >
 
                 <TextView
-                    android:id="@+id/tv_month"
+                    android:id="@+id/id_tv_month"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -152,7 +152,7 @@
         </TableRow>
 
         <GridView
-            android:id="@+id/gv_calendar"
+            android:id="@+id/id_gv_calendar"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:gravity="center"

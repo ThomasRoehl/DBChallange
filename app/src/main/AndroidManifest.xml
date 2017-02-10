@@ -8,18 +8,17 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@drawable/dblogo7"
+        android:label="@string/app_name2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
         <activity
             android:name=".view.LoginActivity"
-            android:label="@string/app_name"
             android:launchMode="singleTask">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -27,7 +26,6 @@
         <activity
             android:name=".view.ConnectionSearchActivity"
             android:screenOrientation="portrait"
-            android:label="@string/app_name"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -74,8 +72,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.throehl.mobilitaetsprofil.view.FoundConnectionsActivity" />
         </activity>
-        <activity android:name=".view.CalenderActivity"></activity>
+        <activity android:name=".view.CalendarActivity"></activity>
 
     </application>
 
 </manifest>
+
+<!--
+android:label="@string/app_name"
+            android:label="@string/app_name"
+
+-->

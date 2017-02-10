@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
@@ -31,12 +33,20 @@ public class LoginActivity extends AppCompatActivity {
     private View mLoginFormView;
     private final String className = this.getClass().getName();
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.app_name);
+        getSupportActionBar().setLogo(R.drawable.dblogo5);
+        //toolbar.setLogo(R.drawable.dblogo4);
+
+        //getSupportActionBar().setIcon(R.drawable.dblogo4);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
         /*

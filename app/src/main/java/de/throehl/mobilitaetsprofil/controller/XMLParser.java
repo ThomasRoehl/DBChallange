@@ -278,7 +278,7 @@ public class XMLParser {
             return dm+" minutes delay";
         }
         else{
-            return dh+"."+dm+" hours delay";
+            return dh+":"+dm+" hours delay";
         }
     }
 }
