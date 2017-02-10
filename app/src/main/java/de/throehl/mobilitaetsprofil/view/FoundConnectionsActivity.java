@@ -112,19 +112,19 @@ public class FoundConnectionsActivity extends AppCompatActivity {
         time1b = (TextView) findViewById(R.id.time1b);
         date1 = (TextView) findViewById(R.id.date1);
         dest1 = (TextView) findViewById(R.id.dest1);
-        path1 = (TextView) findViewById(R.id.path1);
+        //path1 = (TextView) findViewById(R.id.path1);
 
         time2 = (TextView) findViewById(R.id.time2);
         time2b = (TextView) findViewById(R.id.time2b);
         date2 = (TextView) findViewById(R.id.date2);
         dest2 = (TextView) findViewById(R.id.dest2);
-        path2 = (TextView) findViewById(R.id.path2);
+        //path2 = (TextView) findViewById(R.id.path2);
 
         time3 = (TextView) findViewById(R.id.time3);
         time3b = (TextView) findViewById(R.id.time3b);
         date3 = (TextView) findViewById(R.id.date3);
         dest3 = (TextView) findViewById(R.id.dest3);
-        path3 = (TextView) findViewById(R.id.path3);
+        //path3 = (TextView) findViewById(R.id.path3);
 
         init();
         loadRoutes();

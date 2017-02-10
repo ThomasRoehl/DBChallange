@@ -5,11 +5,11 @@
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="error_user_pw">Password or Login is incorrect</string>
+    <string name="error_invalid_email">Name ist ungültig</string>
+    <string name="error_invalid_password">Passwort ist zu kurz</string>
+    <string name="error_incorrect_password">Passwort ist falsch</string>
+    <string name="error_field_required">Darf nicht leer sein</string>
+    <string name="error_user_pw">Passwort oder Name ungültig</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="title_activity_connection_search">ConnectionSearchActivity</string>
     <string name="action_settings">Offline (Simulation) </string>
