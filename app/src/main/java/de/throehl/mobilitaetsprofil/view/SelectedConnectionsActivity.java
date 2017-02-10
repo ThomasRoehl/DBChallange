@@ -27,6 +27,7 @@ import de.throehl.mobilitaetsprofil.model.dbEntries.ConnectionInformation;
 import de.throehl.mobilitaetsprofil.model.dbEntries.LiveInformation;
 import de.throehl.mobilitaetsprofil.model.dbEntries.Route;
 import de.throehl.mobilitaetsprofil.model.dbEntries.Stop;
+import de.throehl.mobilitaetsprofil.model.dbEntries.Transfers;
 import de.throehl.mobilitaetsprofil.model.dbEntries.UserSaves;
 
 public class SelectedConnectionsActivity extends AppCompatActivity {
@@ -38,6 +39,7 @@ public class SelectedConnectionsActivity extends AppCompatActivity {
     private TextView startE, destE, time1E, time2E, trainE, dateE, pathE;
     private String route;
     private String trainID;
+    private EditText sendTo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,39 @@ public class SelectedConnectionsActivity extends AppCompatActivity {
         dateE = (TextView) findViewById(R.id.date);
         pathE = (TextView) findViewById(R.id.path);
 
+        sendTo = (EditText) findViewById(R.id.sendEdit);
+        Button send = (Button) findViewById(R.id.id_button_send);
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String recieverID = sendTo.getText().toString();
+                if (recieverID.isEmpty()) return;
+                if (ControllerFactory.getDbController().getRouteID(start, time1) == -1) {
+                    long routeID = ControllerFactory.getDbController().countUserSaves();
+                    ConnectionInformation conInfo = new ConnectionInformation();
+                    conInfo.setSTART(start);
+                    conInfo.setDEST(dest);
+                    conInfo.setTRAINTYPE(train);
+                    conInfo.setTRAIN(trainID);
+                    conInfo.setStations(stops);
+                    conInfo.setROUTEID((int) routeID + 1);
+                    ControllerFactory.getDbController().insertTravelPlan(conInfo);
+
+
+                    routeID = ControllerFactory.getDbController().getRouteID(start, time1);
+                    recieverID = ControllerFactory.getDbController().getUserIDByName(recieverID)+"";
+                    if (recieverID.equals("-1")) return;
+                    ControllerFactory.getDbController().insertTransfer(new Transfers(ControllerFactory.getID(), recieverID, routeID+""));
+                }
+                else{
+                    long routeID = ControllerFactory.getDbController().getRouteID(start, time1);
+                    recieverID = ControllerFactory.getDbController().getUserIDByName(recieverID)+"";
+                    if (recieverID.equals("-1")) return;
+                    ControllerFactory.getDbController().insertTransfer(new Transfers(ControllerFactory.getID(), recieverID, routeID+""));
+                }
+            }
+        });
+
         ViewControllerFactory.addActivity(className, this);
 
         init();
@@ -71,7 +106,7 @@ public class SelectedConnectionsActivity extends AppCompatActivity {
                 intent.putExtra("VIEW", 2);
 
                 if (ControllerFactory.getDbController().getRouteID(start, time1) == -1) {
-                    long routeID = ControllerFactory.getDbController().countUserSaves(ControllerFactory.getID());
+                    long routeID = ControllerFactory.getDbController().countUserSaves();
                     ConnectionInformation conInfo = new ConnectionInformation();
                     conInfo.setSTART(start);
                     conInfo.setDEST(dest);
@@ -101,7 +136,7 @@ public class SelectedConnectionsActivity extends AppCompatActivity {
                         public void run(){
                             try {
                                 synchronized (this) {
-                                    wait(5000);
+//                                    wait(5000);
 
                                     runOnUiThread(new Runnable() {
                                         @Override
@@ -111,7 +146,7 @@ public class SelectedConnectionsActivity extends AppCompatActivity {
                                     });
 
                                 }
-                            } catch (InterruptedException e) {
+                            } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }

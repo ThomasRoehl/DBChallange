@@ -267,6 +267,26 @@ public class DatabaseController {
         return -1;
     }
 
+    public int getUserIDByName(String name){
+        try {
+            this.open();
+            Log.d("DB"," OPEND");
+        }
+        catch (Exception e){
+            Log.d("DB",e.getMessage());
+            return -1;
+        }
+
+        Cursor cursor = db.query(DatabaseSchema.UserAccount.TABLE_NAME, new String[]{DatabaseSchema.UserAccount._ID}, DatabaseSchema.UserAccount.COLUMN_NAME_USERNAME+"=?", new String[]{name}, null, null, null);
+        cursor.moveToFirst();
+        if (!cursor.isAfterLast()){
+            String s = cursor.getString(0);
+            return Integer.parseInt(s);
+        }
+        this.close();
+        return -1;
+    }
+
     public void insertUserSave(UserSaves save){
         try {
             this.open();
@@ -333,7 +353,7 @@ public class DatabaseController {
         db.delete(DatabaseSchema.Transfers.TABLE_NAME, DatabaseSchema.Transfers.COLUMN_NAME_RECEIVER+"=?", new String[]{userID});
     }
 
-    public long countUserSaves(String userID){
+    public long countUserSaves(){
         try {
             this.open();
             Log.d("DB"," OPEND");
@@ -342,7 +362,7 @@ public class DatabaseController {
             Log.d("DB",e.getMessage());
             return 0;
         }
-        long num = DatabaseUtils.longForQuery(db, "SELECT COUNT(*) FROM " + DatabaseSchema.UserSaves.TABLE_NAME + " WHERE " + DatabaseSchema.UserSaves.COLUMN_NAME_USERID + "=?", new String[]{userID});
+        long num = DatabaseUtils.longForQuery(db, "SELECT COUNT(*) FROM " + DatabaseSchema.UserSaves.TABLE_NAME, new String[]{});
         return num;
     }
 

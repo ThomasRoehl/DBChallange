@@ -183,7 +183,7 @@
             <EditText
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText"
+                android:id="@+id/sendEdit"
                 android:layout_weight="23.50"
                 android:layout_marginLeft="5dp"
                 android:background="@color/colorGray1"

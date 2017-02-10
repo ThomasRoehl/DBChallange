@@ -19,6 +19,7 @@ import de.throehl.mobilitaetsprofil.R;
 import de.throehl.mobilitaetsprofil.controller.ControllerFactory;
 import de.throehl.mobilitaetsprofil.controller.ViewControllerFactory;
 import de.throehl.mobilitaetsprofil.model.dbEntries.Route;
+import de.throehl.mobilitaetsprofil.model.dbEntries.Stop;
 
 public class FoundConnectionsActivity extends AppCompatActivity {
 
@@ -128,6 +129,38 @@ public class FoundConnectionsActivity extends AppCompatActivity {
 
         init();
         loadRoutes();
+
+        new Thread(new Runnable() {
+            public void run(){
+                try {
+                    synchronized (this) {
+//                        wait(5000);
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.d("FCA", "THREAD");
+                                if (routes.size() < 2) {
+                                    extractPath(0);
+                                }
+                                if (routes.size() < 3){
+                                    extractPath(0);
+                                    extractPath(1);
+                                }
+                                else {
+                                    extractPath(0);
+                                    extractPath(1);
+                                    extractPath(2);
+                                }
+                            }
+                        });
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     public void init(){
@@ -203,6 +236,26 @@ public class FoundConnectionsActivity extends AppCompatActivity {
         String timeH = tmp.substring(6,8);
         String timeM = tmp.substring(8);
         return new String[]{dateD+"."+dateM+"."+dateY, timeH+":"+timeM};
+    }
+
+    private void extractPath(int pos){
+        Log.d("FCA", pos+"");
+        String time;
+        if (pos == 0) time = time1.getText().toString();
+        else if (pos == 1) time = time2.getText().toString();
+        else time = time3.getText().toString();
+        try{
+            String t = ControllerFactory.getTtController().getDestTime(dest.getText().toString(), routes.get(pos).getID(), transformDate(date), transformTime(time));
+            t = retransformDateTime(t)[1];
+            if (pos == 0) time1b.setText(t);
+            if (pos == 1) time2b.setText(t);
+            else time3b.setText(t);
+            Log.d("FCA", t);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 }
